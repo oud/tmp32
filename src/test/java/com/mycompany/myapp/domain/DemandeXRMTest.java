@@ -32,18 +32,18 @@ class DemandeXRMTest {
 
         demandeXRM.addMiseEnGestion(miseEnGestionBack);
         assertThat(demandeXRM.getMiseEnGestions()).containsOnly(miseEnGestionBack);
-        assertThat(miseEnGestionBack.getDemandeXRMS()).containsOnly(demandeXRM);
+        assertThat(miseEnGestionBack.getDemandeXRM()).isEqualTo(demandeXRM);
 
         demandeXRM.removeMiseEnGestion(miseEnGestionBack);
         assertThat(demandeXRM.getMiseEnGestions()).doesNotContain(miseEnGestionBack);
-        assertThat(miseEnGestionBack.getDemandeXRMS()).doesNotContain(demandeXRM);
+        assertThat(miseEnGestionBack.getDemandeXRM()).isNull();
 
         demandeXRM.miseEnGestions(new HashSet<>(Set.of(miseEnGestionBack)));
         assertThat(demandeXRM.getMiseEnGestions()).containsOnly(miseEnGestionBack);
-        assertThat(miseEnGestionBack.getDemandeXRMS()).containsOnly(demandeXRM);
+        assertThat(miseEnGestionBack.getDemandeXRM()).isEqualTo(demandeXRM);
 
         demandeXRM.setMiseEnGestions(new HashSet<>());
         assertThat(demandeXRM.getMiseEnGestions()).doesNotContain(miseEnGestionBack);
-        assertThat(miseEnGestionBack.getDemandeXRMS()).doesNotContain(demandeXRM);
+        assertThat(miseEnGestionBack.getDemandeXRM()).isNull();
     }
 }

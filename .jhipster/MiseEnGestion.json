@@ -24,16 +24,10 @@
   "name": "MiseEnGestion",
   "relationships": [
     {
-      "otherEntityName": "demandeXRM",
-      "relationshipName": "demandeXRM",
-      "relationshipSide": "left",
-      "relationshipType": "many-to-many"
-    },
-    {
       "otherEntityName": "pmEtablissement",
       "relationshipName": "pmEtablissement",
       "relationshipSide": "left",
-      "relationshipType": "many-to-many"
+      "relationshipType": "many-to-one"
     }
   ],
   "searchEngine": "no",

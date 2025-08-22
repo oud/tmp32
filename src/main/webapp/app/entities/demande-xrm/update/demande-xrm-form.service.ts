@@ -14,7 +14,7 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type DemandeXRMFormGroupInput = IDemandeXRM | PartialWithRequiredKeyOf<NewDemandeXRM>;
 
-type DemandeXRMFormDefaults = Pick<NewDemandeXRM, 'id' | 'miseEnGestions'>;
+type DemandeXRMFormDefaults = Pick<NewDemandeXRM, 'id'>;
 
 type DemandeXRMFormGroupContent = {
   id: FormControl<IDemandeXRM['id'] | NewDemandeXRM['id']>;
@@ -23,7 +23,6 @@ type DemandeXRMFormGroupContent = {
   dateEnvoiIVS: FormControl<IDemandeXRM['dateEnvoiIVS']>;
   aI: FormControl<IDemandeXRM['aI']>;
   iVS: FormControl<IDemandeXRM['iVS']>;
-  miseEnGestions: FormControl<IDemandeXRM['miseEnGestions']>;
 };
 
 export type DemandeXRMFormGroup = FormGroup<DemandeXRMFormGroupContent>;
@@ -48,7 +47,6 @@ export class DemandeXRMFormService {
       dateEnvoiIVS: new FormControl(demandeXRMRawValue.dateEnvoiIVS),
       aI: new FormControl(demandeXRMRawValue.aI),
       iVS: new FormControl(demandeXRMRawValue.iVS),
-      miseEnGestions: new FormControl(demandeXRMRawValue.miseEnGestions ?? []),
     });
   }
 
@@ -69,7 +67,6 @@ export class DemandeXRMFormService {
   private getFormDefaults(): DemandeXRMFormDefaults {
     return {
       id: null,
-      miseEnGestions: [],
     };
   }
 }

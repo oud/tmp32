@@ -4,8 +4,6 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, from, of } from 'rxjs';
 
-import { IMiseEnGestion } from 'app/entities/mise-en-gestion/mise-en-gestion.model';
-import { MiseEnGestionService } from 'app/entities/mise-en-gestion/service/mise-en-gestion.service';
 import { IGroupe } from 'app/entities/groupe/groupe.model';
 import { GroupeService } from 'app/entities/groupe/service/groupe.service';
 import { IPmEntreprise } from 'app/entities/pm-entreprise/pm-entreprise.model';
@@ -22,7 +20,6 @@ describe('PmEtablissement Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let pmEtablissementFormService: PmEtablissementFormService;
   let pmEtablissementService: PmEtablissementService;
-  let miseEnGestionService: MiseEnGestionService;
   let groupeService: GroupeService;
   let pmEntrepriseService: PmEntrepriseService;
 
@@ -47,7 +44,6 @@ describe('PmEtablissement Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     pmEtablissementFormService = TestBed.inject(PmEtablissementFormService);
     pmEtablissementService = TestBed.inject(PmEtablissementService);
-    miseEnGestionService = TestBed.inject(MiseEnGestionService);
     groupeService = TestBed.inject(GroupeService);
     pmEntrepriseService = TestBed.inject(PmEntrepriseService);
 
@@ -55,28 +51,6 @@ describe('PmEtablissement Management Update Component', () => {
   });
 
   describe('ngOnInit', () => {
-    it('should call MiseEnGestion query and add missing value', () => {
-      const pmEtablissement: IPmEtablissement = { id: 14323 };
-      const miseEnGestions: IMiseEnGestion[] = [{ id: 9935 }];
-      pmEtablissement.miseEnGestions = miseEnGestions;
-
-      const miseEnGestionCollection: IMiseEnGestion[] = [{ id: 9935 }];
-      jest.spyOn(miseEnGestionService, 'query').mockReturnValue(of(new HttpResponse({ body: miseEnGestionCollection })));
-      const additionalMiseEnGestions = [...miseEnGestions];
-      const expectedCollection: IMiseEnGestion[] = [...additionalMiseEnGestions, ...miseEnGestionCollection];
-      jest.spyOn(miseEnGestionService, 'addMiseEnGestionToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ pmEtablissement });
-      comp.ngOnInit();
-
-      expect(miseEnGestionService.query).toHaveBeenCalled();
-      expect(miseEnGestionService.addMiseEnGestionToCollectionIfMissing).toHaveBeenCalledWith(
-        miseEnGestionCollection,
-        ...additionalMiseEnGestions.map(expect.objectContaining),
-      );
-      expect(comp.miseEnGestionsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('should call Groupe query and add missing value', () => {
       const pmEtablissement: IPmEtablissement = { id: 14323 };
       const groupe: IGroupe = { id: 10264 };
@@ -123,8 +97,6 @@ describe('PmEtablissement Management Update Component', () => {
 
     it('should update editForm', () => {
       const pmEtablissement: IPmEtablissement = { id: 14323 };
-      const miseEnGestion: IMiseEnGestion = { id: 9935 };
-      pmEtablissement.miseEnGestions = [miseEnGestion];
       const groupe: IGroupe = { id: 10264 };
       pmEtablissement.groupe = groupe;
       const pmEntreprise: IPmEntreprise = { id: 16964 };
@@ -133,7 +105,6 @@ describe('PmEtablissement Management Update Component', () => {
       activatedRoute.data = of({ pmEtablissement });
       comp.ngOnInit();
 
-      expect(comp.miseEnGestionsSharedCollection).toContainEqual(miseEnGestion);
       expect(comp.groupesSharedCollection).toContainEqual(groupe);
       expect(comp.pmEntreprisesSharedCollection).toContainEqual(pmEntreprise);
       expect(comp.pmEtablissement).toEqual(pmEtablissement);
@@ -209,16 +180,6 @@ describe('PmEtablissement Management Update Component', () => {
   });
 
   describe('Compare relationships', () => {
-    describe('compareMiseEnGestion', () => {
-      it('should forward to miseEnGestionService', () => {
-        const entity = { id: 9935 };
-        const entity2 = { id: 12141 };
-        jest.spyOn(miseEnGestionService, 'compareMiseEnGestion');
-        comp.compareMiseEnGestion(entity, entity2);
-        expect(miseEnGestionService.compareMiseEnGestion).toHaveBeenCalledWith(entity, entity2);
-      });
-    });
-
     describe('compareGroupe', () => {
       it('should forward to groupeService', () => {
         const entity = { id: 10264 };

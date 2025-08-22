@@ -70,23 +70,6 @@
             }
           </select>
         </div>
-
-        <div class="mb-3">
-          <label for="field_miseEnGestions" jhiTranslate="tmp32App.demandeXRM.miseEnGestion">Mise En Gestion</label>
-          <select
-            class="form-control"
-            id="field_miseEnGestions"
-            data-cy="miseEnGestion"
-            multiple
-            name="miseEnGestions"
-            formControlName="miseEnGestions"
-            [compareWith]="compareMiseEnGestion"
-          >
-            @for (miseEnGestionOption of miseEnGestionsSharedCollection; track $index) {
-              <option [ngValue]="miseEnGestionOption">{{ miseEnGestionOption.id }}</option>
-            }
-          </select>
-        </div>
       </div>
 
       <div>

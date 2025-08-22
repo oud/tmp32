@@ -80,35 +80,37 @@
         </div>
 
         <div class="mb-3">
-          <label for="field_demandeXRMS" jhiTranslate="tmp32App.miseEnGestion.demandeXRM">Demande XRM</label>
+          <label class="form-label" for="field_pmEtablissement" jhiTranslate="tmp32App.miseEnGestion.pmEtablissement"
+            >Pm Etablissement</label
+          >
           <select
             class="form-control"
-            id="field_demandeXRMS"
-            data-cy="demandeXRM"
-            multiple
-            name="demandeXRMS"
-            formControlName="demandeXRMS"
-            [compareWith]="compareDemandeXRM"
+            id="field_pmEtablissement"
+            data-cy="pmEtablissement"
+            name="pmEtablissement"
+            formControlName="pmEtablissement"
+            [compareWith]="comparePmEtablissement"
           >
-            @for (demandeXRMOption of demandeXRMSSharedCollection; track $index) {
-              <option [ngValue]="demandeXRMOption">{{ demandeXRMOption.id }}</option>
+            <option [ngValue]="null"></option>
+            @for (pmEtablissementOption of pmEtablissementsSharedCollection; track $index) {
+              <option [ngValue]="pmEtablissementOption">{{ pmEtablissementOption.id }}</option>
             }
           </select>
         </div>
 
         <div class="mb-3">
-          <label for="field_pmEtablissements" jhiTranslate="tmp32App.miseEnGestion.pmEtablissement">Pm Etablissement</label>
+          <label class="form-label" for="field_demandeXRM" jhiTranslate="tmp32App.miseEnGestion.demandeXRM">Demande XRM</label>
           <select
             class="form-control"
-            id="field_pmEtablissements"
-            data-cy="pmEtablissement"
-            multiple
-            name="pmEtablissements"
-            formControlName="pmEtablissements"
-            [compareWith]="comparePmEtablissement"
+            id="field_demandeXRM"
+            data-cy="demandeXRM"
+            name="demandeXRM"
+            formControlName="demandeXRM"
+            [compareWith]="compareDemandeXRM"
           >
-            @for (pmEtablissementOption of pmEtablissementsSharedCollection; track $index) {
-              <option [ngValue]="pmEtablissementOption">{{ pmEtablissementOption.id }}</option>
+            <option [ngValue]="null"></option>
+            @for (demandeXRMOption of demandeXRMSSharedCollection; track $index) {
+              <option [ngValue]="demandeXRMOption">{{ demandeXRMOption.id }}</option>
             }
           </select>
         </div>

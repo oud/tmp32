@@ -10,32 +10,18 @@
     -->
     <changeSet id="20250822124105-2" author="jhipster">
 
-        <addForeignKeyConstraint baseColumnNames="mise_en_gestion_id"
-                                 baseTableName="rel_mise_en_gestion__demandexrm"
-                                 constraintName="fk_rel_mise_en_gestion__demandexrm__mise_en_gestion_id"
+        <addForeignKeyConstraint baseColumnNames="pm_etablissement_id"
+                                 baseTableName="mise_en_gestion"
+                                 constraintName="fk_mise_en_gestion__pm_etablissement_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="mise_en_gestion"
+                                 referencedTableName="pm_etablissement"
                                  />
 
         <addForeignKeyConstraint baseColumnNames="demandexrm_id"
-                                 baseTableName="rel_mise_en_gestion__demandexrm"
-                                 constraintName="fk_rel_mise_en_gestion__demandexrm__demandexrm_id"
+                                 baseTableName="mise_en_gestion"
+                                 constraintName="fk_mise_en_gestion__demandexrm_id"
                                  referencedColumnNames="id"
                                  referencedTableName="demande_xrm"
-                                 />
-
-        <addForeignKeyConstraint baseColumnNames="mise_en_gestion_id"
-                                 baseTableName="rel_mise_en_gestion__pm_etablissement"
-                                 constraintName="fk_rel_mise_en_gestion__pm_etablissement__mise_en_gestion_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="mise_en_gestion"
-                                 />
-
-        <addForeignKeyConstraint baseColumnNames="pm_etablissement_id"
-                                 baseTableName="rel_mise_en_gestion__pm_etablissement"
-                                 constraintName="fk_rel_mise_en_gestion__pm_etablissement__pm_etablissement_id"
-                                 referencedColumnNames="id"
-                                 referencedTableName="pm_etablissement"
                                  />
     </changeSet>
 </databaseChangeLog>

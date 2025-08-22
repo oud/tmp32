@@ -23,33 +23,14 @@
             <column name="date_effet" type="date">
                 <constraints nullable="false" />
             </column>
+            <column name="pm_etablissement_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
+            <column name="demandexrm_id" type="bigint">
+                <constraints nullable="true" />
+            </column>
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here -->
         </createTable>
-    </changeSet>
-
-    <changeSet id="20250822124105-1-relations" author="jhipster">
-
-        <createTable tableName="rel_mise_en_gestion__demandexrm">
-            <column name="demandexrm_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="mise_en_gestion_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="mise_en_gestion_id, demandexrm_id" tableName="rel_mise_en_gestion__demandexrm"/>
-
-        <createTable tableName="rel_mise_en_gestion__pm_etablissement">
-            <column name="pm_etablissement_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-            <column name="mise_en_gestion_id" type="bigint">
-                <constraints nullable="false"/>
-            </column>
-        </createTable>
-
-        <addPrimaryKey columnNames="mise_en_gestion_id, pm_etablissement_id" tableName="rel_mise_en_gestion__pm_etablissement"/>
     </changeSet>
 
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here -->

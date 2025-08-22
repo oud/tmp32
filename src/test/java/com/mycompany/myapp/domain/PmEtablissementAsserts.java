@@ -112,7 +112,6 @@ public class PmEtablissementAsserts {
     public static void assertPmEtablissementUpdatableRelationshipsEquals(PmEtablissement expected, PmEtablissement actual) {
         assertThat(actual)
             .as("Verify PmEtablissement relationships")
-            .satisfies(a -> assertThat(a.getMiseEnGestions()).as("check miseEnGestions").isEqualTo(expected.getMiseEnGestions()))
             .satisfies(a -> assertThat(a.getGroupe()).as("check groupe").isEqualTo(expected.getGroupe()))
             .satisfies(a -> assertThat(a.getPmEntreprise()).as("check pmEntreprise").isEqualTo(expected.getPmEntreprise()));
     }

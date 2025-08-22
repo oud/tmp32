@@ -61,8 +61,6 @@ public class DemandeXRMAsserts {
      * @param actual the actual entity
      */
     public static void assertDemandeXRMUpdatableRelationshipsEquals(DemandeXRM expected, DemandeXRM actual) {
-        assertThat(actual)
-            .as("Verify DemandeXRM relationships")
-            .satisfies(a -> assertThat(a.getMiseEnGestions()).as("check miseEnGestions").isEqualTo(expected.getMiseEnGestions()));
+        // empty method
     }
 }

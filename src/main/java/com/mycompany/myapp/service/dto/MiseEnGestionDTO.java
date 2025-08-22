@@ -3,9 +3,7 @@ package com.mycompany.myapp.service.dto;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * A DTO for the {@link com.mycompany.myapp.domain.MiseEnGestion} entity.
@@ -24,9 +22,9 @@ public class MiseEnGestionDTO implements Serializable {
     @NotNull
     private LocalDate dateEffet;
 
-    private Set<DemandeXRMDTO> demandeXRMS = new HashSet<>();
+    private PmEtablissementDTO pmEtablissement;
 
-    private Set<PmEtablissementDTO> pmEtablissements = new HashSet<>();
+    private DemandeXRMDTO demandeXRM;
 
     public Long getId() {
         return id;
@@ -60,20 +58,20 @@ public class MiseEnGestionDTO implements Serializable {
         this.dateEffet = dateEffet;
     }
 
-    public Set<DemandeXRMDTO> getDemandeXRMS() {
-        return demandeXRMS;
+    public PmEtablissementDTO getPmEtablissement() {
+        return pmEtablissement;
     }
 
-    public void setDemandeXRMS(Set<DemandeXRMDTO> demandeXRMS) {
-        this.demandeXRMS = demandeXRMS;
+    public void setPmEtablissement(PmEtablissementDTO pmEtablissement) {
+        this.pmEtablissement = pmEtablissement;
     }
 
-    public Set<PmEtablissementDTO> getPmEtablissements() {
-        return pmEtablissements;
+    public DemandeXRMDTO getDemandeXRM() {
+        return demandeXRM;
     }
 
-    public void setPmEtablissements(Set<PmEtablissementDTO> pmEtablissements) {
-        this.pmEtablissements = pmEtablissements;
+    public void setDemandeXRM(DemandeXRMDTO demandeXRM) {
+        this.demandeXRM = demandeXRM;
     }
 
     @Override
@@ -105,8 +103,8 @@ public class MiseEnGestionDTO implements Serializable {
             ", codeTypeMiseEnGestion='" + getCodeTypeMiseEnGestion() + "'" +
             ", codeOffre='" + getCodeOffre() + "'" +
             ", dateEffet='" + getDateEffet() + "'" +
-            ", demandeXRMS=" + getDemandeXRMS() +
-            ", pmEtablissements=" + getPmEtablissements() +
+            ", pmEtablissement=" + getPmEtablissement() +
+            ", demandeXRM=" + getDemandeXRM() +
             "}";
     }
 }

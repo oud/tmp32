@@ -41,8 +41,8 @@ public class DemandeXRM implements Serializable {
     @Column(name = "i_vs")
     private Status iVS;
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "demandeXRMS")
-    @JsonIgnoreProperties(value = { "demandeXRMS", "pmEtablissements" }, allowSetters = true)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "demandeXRM")
+    @JsonIgnoreProperties(value = { "pmEtablissement", "demandeXRM" }, allowSetters = true)
     private Set<MiseEnGestion> miseEnGestions = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
@@ -131,10 +131,10 @@ public class DemandeXRM implements Serializable {
 
     public void setMiseEnGestions(Set<MiseEnGestion> miseEnGestions) {
         if (this.miseEnGestions != null) {
-            this.miseEnGestions.forEach(i -> i.removeDemandeXRM(this));
+            this.miseEnGestions.forEach(i -> i.setDemandeXRM(null));
         }
         if (miseEnGestions != null) {
-            miseEnGestions.forEach(i -> i.addDemandeXRM(this));
+            miseEnGestions.forEach(i -> i.setDemandeXRM(this));
         }
         this.miseEnGestions = miseEnGestions;
     }
@@ -146,13 +146,13 @@ public class DemandeXRM implements Serializable {
 
     public DemandeXRM addMiseEnGestion(MiseEnGestion miseEnGestion) {
         this.miseEnGestions.add(miseEnGestion);
-        miseEnGestion.getDemandeXRMS().add(this);
+        miseEnGestion.setDemandeXRM(this);
         return this;
     }
 
     public DemandeXRM removeMiseEnGestion(MiseEnGestion miseEnGestion) {
         this.miseEnGestions.remove(miseEnGestion);
-        miseEnGestion.getDemandeXRMS().remove(this);
+        miseEnGestion.setDemandeXRM(null);
         return this;
     }
 

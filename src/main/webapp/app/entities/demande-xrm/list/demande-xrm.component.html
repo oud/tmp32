@@ -75,12 +75,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="miseEnGestion.id">
-              <div class="d-flex">
-                <span jhiTranslate="tmp32App.demandeXRM.miseEnGestion">Mise En Gestion</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -98,14 +92,6 @@
               </td>
               <td [jhiTranslate]="'tmp32App.Status.' + (demandeXRM.iVS ?? 'null')">
                 {{ { null: '', RECU: 'RECU', TRAITE: 'TRAITE' }[demandeXRM.iVS ?? 'null'] }}
-              </td>
-              <td>
-                @for (miseEnGestion of demandeXRM.miseEnGestions; track $index; let last = $last) {
-                  <span>
-                    <a class="form-control-static" [routerLink]="['/mise-en-gestion', miseEnGestion.id, 'view']">{{ miseEnGestion.id }}</a
-                    >{{ last ? '' : ', ' }}
-                  </span>
-                }
               </td>
               <td class="text-end">
                 <div class="btn-group">

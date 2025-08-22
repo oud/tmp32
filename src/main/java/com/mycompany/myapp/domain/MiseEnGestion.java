@@ -5,8 +5,6 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * A MiseEnGestion.
@@ -36,23 +34,13 @@ public class MiseEnGestion implements Serializable {
     @Column(name = "date_effet", nullable = false)
     private LocalDate dateEffet;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "rel_mise_en_gestion__demandexrm",
-        joinColumns = @JoinColumn(name = "mise_en_gestion_id"),
-        inverseJoinColumns = @JoinColumn(name = "demandexrm_id")
-    )
-    @JsonIgnoreProperties(value = { "miseEnGestions" }, allowSetters = true)
-    private Set<DemandeXRM> demandeXRMS = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "groupe", "pmEntreprise" }, allowSetters = true)
+    private PmEtablissement pmEtablissement;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-        name = "rel_mise_en_gestion__pm_etablissement",
-        joinColumns = @JoinColumn(name = "mise_en_gestion_id"),
-        inverseJoinColumns = @JoinColumn(name = "pm_etablissement_id")
-    )
-    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "miseEnGestions", "groupe", "pmEntreprise" }, allowSetters = true)
-    private Set<PmEtablissement> pmEtablissements = new HashSet<>();
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JsonIgnoreProperties(value = { "miseEnGestions" }, allowSetters = true)
+    private DemandeXRM demandeXRM;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here
 
@@ -108,49 +96,29 @@ public class MiseEnGestion implements Serializable {
         this.dateEffet = dateEffet;
     }
 
-    public Set<DemandeXRM> getDemandeXRMS() {
-        return this.demandeXRMS;
+    public PmEtablissement getPmEtablissement() {
+        return this.pmEtablissement;
     }
 
-    public void setDemandeXRMS(Set<DemandeXRM> demandeXRMS) {
-        this.demandeXRMS = demandeXRMS;
+    public void setPmEtablissement(PmEtablissement pmEtablissement) {
+        this.pmEtablissement = pmEtablissement;
     }
 
-    public MiseEnGestion demandeXRMS(Set<DemandeXRM> demandeXRMS) {
-        this.setDemandeXRMS(demandeXRMS);
+    public MiseEnGestion pmEtablissement(PmEtablissement pmEtablissement) {
+        this.setPmEtablissement(pmEtablissement);
         return this;
     }
 
-    public MiseEnGestion addDemandeXRM(DemandeXRM demandeXRM) {
-        this.demandeXRMS.add(demandeXRM);
-        return this;
+    public DemandeXRM getDemandeXRM() {
+        return this.demandeXRM;
     }
 
-    public MiseEnGestion removeDemandeXRM(DemandeXRM demandeXRM) {
-        this.demandeXRMS.remove(demandeXRM);
-        return this;
+    public void setDemandeXRM(DemandeXRM demandeXRM) {
+        this.demandeXRM = demandeXRM;
     }
 
-    public Set<PmEtablissement> getPmEtablissements() {
-        return this.pmEtablissements;
-    }
-
-    public void setPmEtablissements(Set<PmEtablissement> pmEtablissements) {
-        this.pmEtablissements = pmEtablissements;
-    }
-
-    public MiseEnGestion pmEtablissements(Set<PmEtablissement> pmEtablissements) {
-        this.setPmEtablissements(pmEtablissements);
-        return this;
-    }
-
-    public MiseEnGestion addPmEtablissement(PmEtablissement pmEtablissement) {
-        this.pmEtablissements.add(pmEtablissement);
-        return this;
-    }
-
-    public MiseEnGestion removePmEtablissement(PmEtablissement pmEtablissement) {
-        this.pmEtablissements.remove(pmEtablissement);
+    public MiseEnGestion demandeXRM(DemandeXRM demandeXRM) {
+        this.setDemandeXRM(demandeXRM);
         return this;
     }
 

@@ -1,5 +1,4 @@
 import dayjs from 'dayjs/esm';
-import { IMiseEnGestion } from 'app/entities/mise-en-gestion/mise-en-gestion.model';
 import { IGroupe } from 'app/entities/groupe/groupe.model';
 import { IPmEntreprise } from 'app/entities/pm-entreprise/pm-entreprise.model';
 
@@ -30,7 +29,6 @@ export interface IPmEtablissement {
   codeNIC?: string | null;
   identifiantAI?: string | null;
   checked?: boolean | null;
-  miseEnGestions?: Pick<IMiseEnGestion, 'id'>[] | null;
   groupe?: Pick<IGroupe, 'id'> | null;
   pmEntreprise?: Pick<IPmEntreprise, 'id'> | null;
 }

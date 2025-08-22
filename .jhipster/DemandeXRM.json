@@ -30,7 +30,14 @@
     }
   ],
   "name": "DemandeXRM",
-  "relationships": [],
+  "relationships": [
+    {
+      "otherEntityName": "miseEnGestion",
+      "relationshipName": "miseEnGestion",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
   "searchEngine": "no",
   "service": "serviceImpl"
 }

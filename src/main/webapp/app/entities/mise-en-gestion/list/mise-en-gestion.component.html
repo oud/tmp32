@@ -61,15 +61,15 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="demandeXRM.id">
-              <div class="d-flex">
-                <span jhiTranslate="tmp32App.miseEnGestion.demandeXRM">Demande XRM</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col" jhiSortBy="pmEtablissement.id">
               <div class="d-flex">
                 <span jhiTranslate="tmp32App.miseEnGestion.pmEtablissement">Pm Etablissement</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="demandeXRM.id">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.miseEnGestion.demandeXRM">Demande XRM</span>
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
@@ -86,21 +86,19 @@
               <td>{{ miseEnGestion.codeOffre }}</td>
               <td>{{ miseEnGestion.dateEffet | formatMediumDate }}</td>
               <td>
-                @for (demandeXRM of miseEnGestion.demandeXRMS; track $index; let last = $last) {
-                  <span>
-                    <a class="form-control-static" [routerLink]="['/demande-xrm', demandeXRM.id, 'view']">{{ demandeXRM.id }}</a
-                    >{{ last ? '' : ', ' }}
-                  </span>
+                @if (miseEnGestion.pmEtablissement) {
+                  <div>
+                    <a [routerLink]="['/pm-etablissement', miseEnGestion.pmEtablissement.id, 'view']">{{
+                      miseEnGestion.pmEtablissement.id
+                    }}</a>
+                  </div>
                 }
               </td>
               <td>
-                @for (pmEtablissement of miseEnGestion.pmEtablissements; track $index; let last = $last) {
-                  <span>
-                    <a class="form-control-static" [routerLink]="['/pm-etablissement', pmEtablissement.id, 'view']">{{
-                      pmEtablissement.id
-                    }}</a
-                    >{{ last ? '' : ', ' }}
-                  </span>
+                @if (miseEnGestion.demandeXRM) {
+                  <div>
+                    <a [routerLink]="['/demande-xrm', miseEnGestion.demandeXRM.id, 'view']">{{ miseEnGestion.demandeXRM.id }}</a>
+                  </div>
                 }
               </td>
               <td class="text-end">

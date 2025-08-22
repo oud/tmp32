@@ -23,8 +23,8 @@ describe('MiseEnGestion Form Service', () => {
             codeTypeMiseEnGestion: expect.any(Object),
             codeOffre: expect.any(Object),
             dateEffet: expect.any(Object),
-            demandeXRMS: expect.any(Object),
-            pmEtablissements: expect.any(Object),
+            pmEtablissement: expect.any(Object),
+            demandeXRM: expect.any(Object),
           }),
         );
       });
@@ -38,8 +38,8 @@ describe('MiseEnGestion Form Service', () => {
             codeTypeMiseEnGestion: expect.any(Object),
             codeOffre: expect.any(Object),
             dateEffet: expect.any(Object),
-            demandeXRMS: expect.any(Object),
-            pmEtablissements: expect.any(Object),
+            pmEtablissement: expect.any(Object),
+            demandeXRM: expect.any(Object),
           }),
         );
       });
