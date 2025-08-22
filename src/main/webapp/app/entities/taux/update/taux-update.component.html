@@ -1,0 +1,131 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-taux-heading" data-cy="TauxCreateUpdateHeading" jhiTranslate="tmp32App.taux.home.createOrEditLabel">
+        Create or edit a Taux
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="tmp32App.taux.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let codeVariableDeclarativeRef = editForm.get('codeVariableDeclarative')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeVariableDeclarative" jhiTranslate="tmp32App.taux.codeVariableDeclarative"
+            >Code Variable Declarative</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeVariableDeclarative"
+            id="field_codeVariableDeclarative"
+            data-cy="codeVariableDeclarative"
+            formControlName="codeVariableDeclarative"
+          />
+          @if (codeVariableDeclarativeRef.invalid && (codeVariableDeclarativeRef.dirty || codeVariableDeclarativeRef.touched)) {
+            <div>
+              @if (editForm.get('codeVariableDeclarative')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let uniteVariableDeclarativeRef = editForm.get('uniteVariableDeclarative')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_uniteVariableDeclarative" jhiTranslate="tmp32App.taux.uniteVariableDeclarative"
+            >Unite Variable Declarative</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="uniteVariableDeclarative"
+            id="field_uniteVariableDeclarative"
+            data-cy="uniteVariableDeclarative"
+            formControlName="uniteVariableDeclarative"
+          />
+          @if (uniteVariableDeclarativeRef.invalid && (uniteVariableDeclarativeRef.dirty || uniteVariableDeclarativeRef.touched)) {
+            <div>
+              @if (editForm.get('uniteVariableDeclarative')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_valeurFacteurMontant" jhiTranslate="tmp32App.taux.valeurFacteurMontant"
+            >Valeur Facteur Montant</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="valeurFacteurMontant"
+            id="field_valeurFacteurMontant"
+            data-cy="valeurFacteurMontant"
+            formControlName="valeurFacteurMontant"
+          />
+        </div>
+
+        @let valeurFacteurTauxRef = editForm.get('valeurFacteurTaux')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_valeurFacteurTaux" jhiTranslate="tmp32App.taux.valeurFacteurTaux">Valeur Facteur Taux</label>
+          <input
+            type="text"
+            class="form-control"
+            name="valeurFacteurTaux"
+            id="field_valeurFacteurTaux"
+            data-cy="valeurFacteurTaux"
+            formControlName="valeurFacteurTaux"
+          />
+          @if (valeurFacteurTauxRef.invalid && (valeurFacteurTauxRef.dirty || valeurFacteurTauxRef.touched)) {
+            <div>
+              @if (editForm.get('valeurFacteurTaux')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_garantie" jhiTranslate="tmp32App.taux.garantie">Garantie</label>
+          <select
+            class="form-control"
+            id="field_garantie"
+            data-cy="garantie"
+            name="garantie"
+            formControlName="garantie"
+            [compareWith]="compareGarantie"
+          >
+            <option [ngValue]="null"></option>
+            @for (garantieOption of garantiesSharedCollection; track $index) {
+              <option [ngValue]="garantieOption">{{ garantieOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,273 @@
+<div>
+  <h2 id="page-heading" data-cy="ContratHeading">
+    <span jhiTranslate="tmp32App.contrat.home.title">Contrats</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="tmp32App.contrat.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-contrat"
+        [routerLink]="['/contrat/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tmp32App.contrat.home.createLabel">Create a new Contrat</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (contrats().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="tmp32App.contrat.home.notFound">No Contrats found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroContratCollectif">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.numeroContratCollectif">Numero Contrat Collectif</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="migre">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.migre">Migre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeEntiteRattachement">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeEntiteRattachement">Code Entite Rattachement</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeCentreGestion">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeCentreGestion">Code Centre Gestion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeGroupeGestion">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeGroupeGestion">Code Groupe Gestion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeReseauDistribution">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeReseauDistribution">Code Reseau Distribution</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeContratCollectif">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.typeContratCollectif">Type Contrat Collectif</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatContrat">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.etatContrat">Etat Contrat</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateEffetPremiereSouscription">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.dateEffetPremiereSouscription">Date Effet Premiere Souscription</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateEffetDerniereResiliation">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.dateEffetDerniereResiliation">Date Effet Derniere Resiliation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="motifResiliation">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.motifResiliation">Motif Resiliation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeNatureCouverture">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeNatureCouverture">Code Nature Couverture</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeOffre">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeOffre">Code Offre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroVersionOffre">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.numeroVersionOffre">Numero Version Offre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="echeancePrincipale">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.echeancePrincipale">Echeance Principale</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeOrganismePorteurRisque">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeOrganismePorteurRisque">Code Organisme Porteur Risque</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="indicateurPorteurRisque">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.indicateurPorteurRisque">Indicateur Porteur Risque</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeOrganismeProducteurFicheDsn">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeOrganismeProducteurFicheDsn">Code Organisme Producteur Fiche Dsn</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeOrganismeDelegataireCotisations">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeOrganismeDelegataireCotisations">Code Organisme Delegataire Cotisations</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeOrganismeDelegatairePrestations">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.codeOrganismeDelegatairePrestations">Code Organisme Delegataire Prestations</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="datePremierMoisCotisationAutorise">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.datePremierMoisCotisationAutorise">Date Premier Mois Cotisation Autorise</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroOperationNiveau0">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.numeroOperationNiveau0">Numero Operation Niveau 0</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="statut">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.statut">Statut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="pmEntreprise.id">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.contrat.pmEntreprise">Pm Entreprise</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (contrat of contrats(); track trackId(contrat)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/contrat', contrat.id, 'view']">{{ contrat.id }}</a>
+              </td>
+              <td>{{ contrat.numeroContratCollectif }}</td>
+              <td>{{ contrat.migre }}</td>
+              <td>{{ contrat.codeEntiteRattachement }}</td>
+              <td>{{ contrat.codeCentreGestion }}</td>
+              <td>{{ contrat.codeGroupeGestion }}</td>
+              <td>{{ contrat.codeReseauDistribution }}</td>
+              <td>{{ contrat.typeContratCollectif }}</td>
+              <td>{{ contrat.etatContrat }}</td>
+              <td>{{ contrat.dateEffetPremiereSouscription | formatMediumDate }}</td>
+              <td>{{ contrat.dateEffetDerniereResiliation | formatMediumDate }}</td>
+              <td>{{ contrat.motifResiliation }}</td>
+              <td>{{ contrat.codeNatureCouverture }}</td>
+              <td>{{ contrat.codeOffre }}</td>
+              <td>{{ contrat.numeroVersionOffre }}</td>
+              <td>{{ contrat.echeancePrincipale }}</td>
+              <td>{{ contrat.codeOrganismePorteurRisque }}</td>
+              <td>{{ contrat.indicateurPorteurRisque }}</td>
+              <td>{{ contrat.codeOrganismeProducteurFicheDsn }}</td>
+              <td>{{ contrat.codeOrganismeDelegataireCotisations }}</td>
+              <td>{{ contrat.codeOrganismeDelegatairePrestations }}</td>
+              <td>{{ contrat.datePremierMoisCotisationAutorise }}</td>
+              <td>{{ contrat.numeroOperationNiveau0 }}</td>
+              <td>{{ contrat.statut }}</td>
+              <td>
+                @if (contrat.pmEntreprise) {
+                  <div>
+                    <a [routerLink]="['/pm-entreprise', contrat.pmEntreprise.id, 'view']">{{ contrat.pmEntreprise.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/contrat', contrat.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/contrat', contrat.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(contrat)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

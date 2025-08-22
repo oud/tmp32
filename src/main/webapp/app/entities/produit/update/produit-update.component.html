@@ -1,0 +1,218 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-produit-heading" data-cy="ProduitCreateUpdateHeading" jhiTranslate="tmp32App.produit.home.createOrEditLabel">
+        Create or edit a Produit
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="tmp32App.produit.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let codeProduitRef = editForm.get('codeProduit')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeProduit" jhiTranslate="tmp32App.produit.codeProduit">Code Produit</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeProduit"
+            id="field_codeProduit"
+            data-cy="codeProduit"
+            formControlName="codeProduit"
+          />
+          @if (codeProduitRef.invalid && (codeProduitRef.dirty || codeProduitRef.touched)) {
+            <div>
+              @if (editForm.get('codeProduit')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let dateAdhesionProduitRef = editForm.get('dateAdhesionProduit')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_dateAdhesionProduit" jhiTranslate="tmp32App.produit.dateAdhesionProduit"
+            >Date Adhesion Produit</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateAdhesionProduit"
+              data-cy="dateAdhesionProduit"
+              type="text"
+              class="form-control"
+              name="dateAdhesionProduit"
+              ngbDatepicker
+              #dateAdhesionProduitDp="ngbDatepicker"
+              formControlName="dateAdhesionProduit"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateAdhesionProduitDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          @if (dateAdhesionProduitRef.invalid && (dateAdhesionProduitRef.dirty || dateAdhesionProduitRef.touched)) {
+            <div>
+              @if (editForm.get('dateAdhesionProduit')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateRadiationProduit" jhiTranslate="tmp32App.produit.dateRadiationProduit"
+            >Date Radiation Produit</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateRadiationProduit"
+              data-cy="dateRadiationProduit"
+              type="text"
+              class="form-control"
+              name="dateRadiationProduit"
+              ngbDatepicker
+              #dateRadiationProduitDp="ngbDatepicker"
+              formControlName="dateRadiationProduit"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateRadiationProduitDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        @let codeFormuleRef = editForm.get('codeFormule')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeFormule" jhiTranslate="tmp32App.produit.codeFormule">Code Formule</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeFormule"
+            id="field_codeFormule"
+            data-cy="codeFormule"
+            formControlName="codeFormule"
+          />
+          @if (codeFormuleRef.invalid && (codeFormuleRef.dirty || codeFormuleRef.touched)) {
+            <div>
+              @if (editForm.get('codeFormule')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeFamilleRisqueFormuleRef = editForm.get('codeFamilleRisqueFormule')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeFamilleRisqueFormule" jhiTranslate="tmp32App.produit.codeFamilleRisqueFormule"
+            >Code Famille Risque Formule</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeFamilleRisqueFormule"
+            id="field_codeFamilleRisqueFormule"
+            data-cy="codeFamilleRisqueFormule"
+            formControlName="codeFamilleRisqueFormule"
+          />
+          @if (codeFamilleRisqueFormuleRef.invalid && (codeFamilleRisqueFormuleRef.dirty || codeFamilleRisqueFormuleRef.touched)) {
+            <div>
+              @if (editForm.get('codeFamilleRisqueFormule')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let titreFormuleRef = editForm.get('titreFormule')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_titreFormule" jhiTranslate="tmp32App.produit.titreFormule">Titre Formule</label>
+          <input
+            type="text"
+            class="form-control"
+            name="titreFormule"
+            id="field_titreFormule"
+            data-cy="titreFormule"
+            formControlName="titreFormule"
+          />
+          @if (titreFormuleRef.invalid && (titreFormuleRef.dirty || titreFormuleRef.touched)) {
+            <div>
+              @if (editForm.get('titreFormule')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let typeFormuleRef = editForm.get('typeFormule')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_typeFormule" jhiTranslate="tmp32App.produit.typeFormule">Type Formule</label>
+          <input
+            type="text"
+            class="form-control"
+            name="typeFormule"
+            id="field_typeFormule"
+            data-cy="typeFormule"
+            formControlName="typeFormule"
+          />
+          @if (typeFormuleRef.invalid && (typeFormuleRef.dirty || typeFormuleRef.touched)) {
+            <div>
+              @if (editForm.get('typeFormule')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeEtatRef = editForm.get('codeEtat')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeEtat" jhiTranslate="tmp32App.produit.codeEtat">Code Etat</label>
+          <input type="text" class="form-control" name="codeEtat" id="field_codeEtat" data-cy="codeEtat" formControlName="codeEtat" />
+          @if (codeEtatRef.invalid && (codeEtatRef.dirty || codeEtatRef.touched)) {
+            <div>
+              @if (editForm.get('codeEtat')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_groupe" jhiTranslate="tmp32App.produit.groupe">Groupe</label>
+          <select
+            class="form-control"
+            id="field_groupe"
+            data-cy="groupe"
+            name="groupe"
+            formControlName="groupe"
+            [compareWith]="compareGroupe"
+          >
+            <option [ngValue]="null"></option>
+            @for (groupeOption of groupesSharedCollection; track $index) {
+              <option [ngValue]="groupeOption">{{ groupeOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

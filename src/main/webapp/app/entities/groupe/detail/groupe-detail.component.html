@@ -1,0 +1,62 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (groupe(); as groupeRef) {
+      <div>
+        <h2 data-cy="groupeDetailsHeading"><span jhiTranslate="tmp32App.groupe.detail.title">Groupe</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ groupeRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.groupe.codeGroupeAssures">Code Groupe Assures</span></dt>
+          <dd>
+            <span>{{ groupeRef.codeGroupeAssures }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.groupe.codeGroupePopulation">Code Groupe Population</span></dt>
+          <dd>
+            <span>{{ groupeRef.codeGroupePopulation }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.groupe.typeGroupeAssures">Type Groupe Assures</span></dt>
+          <dd>
+            <span>{{ groupeRef.typeGroupeAssures }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.groupe.dateDebutPeriodeGroupeAssures">Date Debut Periode Groupe Assures</span></dt>
+          <dd>
+            <span>{{ groupeRef.dateDebutPeriodeGroupeAssures | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.groupe.libelleGroupeAssuresTypeAutre">Libelle Groupe Assures Type Autre</span></dt>
+          <dd>
+            <span>{{ groupeRef.libelleGroupeAssuresTypeAutre }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.groupe.codeEtatGroupeAssures">Code Etat Groupe Assures</span></dt>
+          <dd>
+            <span>{{ groupeRef.codeEtatGroupeAssures }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.groupe.contrat">Contrat</span></dt>
+          <dd>
+            @if (groupe()!.contrat) {
+              <div>
+                <a [routerLink]="['/contrat', groupe()!.contrat?.id, 'view']">{{ groupeRef.contrat?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/groupe', groupeRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

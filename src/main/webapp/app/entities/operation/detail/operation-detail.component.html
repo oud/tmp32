@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (operation(); as operationRef) {
+      <div>
+        <h2 data-cy="operationDetailsHeading"><span jhiTranslate="tmp32App.operation.detail.title">Operation</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ operationRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.operation.numeroOperationNiveau0">Numero Operation Niveau 0</span></dt>
+          <dd>
+            <span>{{ operationRef.numeroOperationNiveau0 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.operation.etatOperation">Etat Operation</span></dt>
+          <dd>
+            <span>{{ operationRef.etatOperation }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.operation.dateEffetOperation">Date Effet Operation</span></dt>
+          <dd>
+            <span>{{ operationRef.dateEffetOperation | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.operation.dateDemandeOperation">Date Demande Operation</span></dt>
+          <dd>
+            <span>{{ operationRef.dateDemandeOperation | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.operation.dateCreation">Date Creation</span></dt>
+          <dd>
+            <span>{{ operationRef.dateCreation | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.operation.codeActeGestion">Code Acte Gestion</span></dt>
+          <dd>
+            <span>{{ operationRef.codeActeGestion }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.operation.numeroOperationAnnulee">Numero Operation Annulee</span></dt>
+          <dd>
+            <span>{{ operationRef.numeroOperationAnnulee }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.operation.contrat">Contrat</span></dt>
+          <dd>
+            @if (operation()!.contrat) {
+              <div>
+                <a [routerLink]="['/contrat', operation()!.contrat?.id, 'view']">{{ operationRef.contrat?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/operation', operationRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,31 @@
+{
+  "tmp32App": {
+    "operation": {
+      "home": {
+        "title": "Operations",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Operation",
+        "createOrEditLabel": "Create or edit a Operation",
+        "notFound": "No Operations found"
+      },
+      "created": "A new Operation is created with identifier {{ param }}",
+      "updated": "A Operation is updated with identifier {{ param }}",
+      "deleted": "A Operation is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Operation {{ id }}?"
+      },
+      "detail": {
+        "title": "Operation"
+      },
+      "id": "ID",
+      "numeroOperationNiveau0": "Numero Operation Niveau 0",
+      "etatOperation": "Etat Operation",
+      "dateEffetOperation": "Date Effet Operation",
+      "dateDemandeOperation": "Date Demande Operation",
+      "dateCreation": "Date Creation",
+      "codeActeGestion": "Code Acte Gestion",
+      "numeroOperationAnnulee": "Numero Operation Annulee",
+      "contrat": "Contrat"
+    }
+  }
+}

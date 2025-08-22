@@ -1,0 +1,129 @@
+{
+  "annotations": {
+    "changelogDate": "20250822124112"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "idEntrepriseRPG",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codePartenaireDistributeur",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroSiretSiege",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeEtat",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelleEtat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeCategoriePersonne",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "libelleCategoriePersonne",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeType",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateCreationJuridique",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateEtat",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateFermetureJuridique",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "codeTrancheEffectif",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "libelleTrancheEffectif",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateCessationActivite",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateEffectifOfficiel",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "effectifOfficiel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeMotifCessationActivite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "siren",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeFormeJuridique",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "raisonSociale",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeCategorieJuridique",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeIDCC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeAPE",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "identifiantAI",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "checked",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "PmEntreprise",
+  "relationships": [
+    {
+      "otherEntityName": "pmEtablissement",
+      "relationshipName": "pmEtablissement",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

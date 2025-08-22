@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (demandeXRM(); as demandeXRMRef) {
+      <div>
+        <h2 data-cy="demandeXRMDetailsHeading"><span jhiTranslate="tmp32App.demandeXRM.detail.title">Demande XRM</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ demandeXRMRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.demandeXRM.dateDemande">Date Demande</span></dt>
+          <dd>
+            <span>{{ demandeXRMRef.dateDemande }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.demandeXRM.dateEnvoiAI">Date Envoi AI</span></dt>
+          <dd>
+            <span>{{ demandeXRMRef.dateEnvoiAI }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.demandeXRM.dateEnvoiIVS">Date Envoi IVS</span></dt>
+          <dd>
+            <span>{{ demandeXRMRef.dateEnvoiIVS }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.demandeXRM.aI">A I</span></dt>
+          <dd>
+            <span [jhiTranslate]="'tmp32App.Status.' + (demandeXRMRef.aI ?? 'null')">{{
+              { null: '', RECU: 'RECU', TRAITE: 'TRAITE' }[demandeXRMRef.aI ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.demandeXRM.iVS">I VS</span></dt>
+          <dd>
+            <span [jhiTranslate]="'tmp32App.Status.' + (demandeXRMRef.iVS ?? 'null')">{{
+              { null: '', RECU: 'RECU', TRAITE: 'TRAITE' }[demandeXRMRef.iVS ?? 'null']
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.demandeXRM.miseEnGestion">Mise En Gestion</span></dt>
+          <dd>
+            @for (miseEnGestion of demandeXRMRef.miseEnGestions; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/mise-en-gestion', miseEnGestion.id, 'view']">{{ miseEnGestion?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/demande-xrm', demandeXRMRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,130 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (contrat(); as contratRef) {
+      <div>
+        <h2 data-cy="contratDetailsHeading"><span jhiTranslate="tmp32App.contrat.detail.title">Contrat</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ contratRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.numeroContratCollectif">Numero Contrat Collectif</span></dt>
+          <dd>
+            <span>{{ contratRef.numeroContratCollectif }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.migre">Migre</span></dt>
+          <dd>
+            <span>{{ contratRef.migre }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeEntiteRattachement">Code Entite Rattachement</span></dt>
+          <dd>
+            <span>{{ contratRef.codeEntiteRattachement }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeCentreGestion">Code Centre Gestion</span></dt>
+          <dd>
+            <span>{{ contratRef.codeCentreGestion }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeGroupeGestion">Code Groupe Gestion</span></dt>
+          <dd>
+            <span>{{ contratRef.codeGroupeGestion }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeReseauDistribution">Code Reseau Distribution</span></dt>
+          <dd>
+            <span>{{ contratRef.codeReseauDistribution }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.typeContratCollectif">Type Contrat Collectif</span></dt>
+          <dd>
+            <span>{{ contratRef.typeContratCollectif }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.etatContrat">Etat Contrat</span></dt>
+          <dd>
+            <span>{{ contratRef.etatContrat }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.dateEffetPremiereSouscription">Date Effet Premiere Souscription</span></dt>
+          <dd>
+            <span>{{ contratRef.dateEffetPremiereSouscription | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.dateEffetDerniereResiliation">Date Effet Derniere Resiliation</span></dt>
+          <dd>
+            <span>{{ contratRef.dateEffetDerniereResiliation | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.motifResiliation">Motif Resiliation</span></dt>
+          <dd>
+            <span>{{ contratRef.motifResiliation }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeNatureCouverture">Code Nature Couverture</span></dt>
+          <dd>
+            <span>{{ contratRef.codeNatureCouverture }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeOffre">Code Offre</span></dt>
+          <dd>
+            <span>{{ contratRef.codeOffre }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.numeroVersionOffre">Numero Version Offre</span></dt>
+          <dd>
+            <span>{{ contratRef.numeroVersionOffre }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.echeancePrincipale">Echeance Principale</span></dt>
+          <dd>
+            <span>{{ contratRef.echeancePrincipale }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeOrganismePorteurRisque">Code Organisme Porteur Risque</span></dt>
+          <dd>
+            <span>{{ contratRef.codeOrganismePorteurRisque }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.indicateurPorteurRisque">Indicateur Porteur Risque</span></dt>
+          <dd>
+            <span>{{ contratRef.indicateurPorteurRisque }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeOrganismeProducteurFicheDsn">Code Organisme Producteur Fiche Dsn</span></dt>
+          <dd>
+            <span>{{ contratRef.codeOrganismeProducteurFicheDsn }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeOrganismeDelegataireCotisations">Code Organisme Delegataire Cotisations</span></dt>
+          <dd>
+            <span>{{ contratRef.codeOrganismeDelegataireCotisations }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.codeOrganismeDelegatairePrestations">Code Organisme Delegataire Prestations</span></dt>
+          <dd>
+            <span>{{ contratRef.codeOrganismeDelegatairePrestations }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.datePremierMoisCotisationAutorise">Date Premier Mois Cotisation Autorise</span></dt>
+          <dd>
+            <span>{{ contratRef.datePremierMoisCotisationAutorise }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.numeroOperationNiveau0">Numero Operation Niveau 0</span></dt>
+          <dd>
+            <span>{{ contratRef.numeroOperationNiveau0 }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.statut">Statut</span></dt>
+          <dd>
+            <span>{{ contratRef.statut }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.contrat.pmEntreprise">Pm Entreprise</span></dt>
+          <dd>
+            @if (contrat()!.pmEntreprise) {
+              <div>
+                <a [routerLink]="['/pm-entreprise', contrat()!.pmEntreprise?.id, 'view']">{{ contratRef.pmEntreprise?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/contrat', contratRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

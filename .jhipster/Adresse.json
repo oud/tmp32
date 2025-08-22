@@ -1,0 +1,73 @@
+{
+  "annotations": {
+    "changelogDate": "20250822124114"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "codePaysISO",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codePostal",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateDerniereModification",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "codeTypeAdresse",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelleCommune",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ligne1",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ligne2",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ligne3",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ligne4",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ligne5",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ligne6",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "ligne7",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "nombreCourriersPND",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeUsageAdresse",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Adresse",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

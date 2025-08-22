@@ -1,0 +1,28 @@
+{
+  "tmp32App": {
+    "taux": {
+      "home": {
+        "title": "Tauxes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Taux",
+        "createOrEditLabel": "Create or edit a Taux",
+        "notFound": "No Tauxes found"
+      },
+      "created": "A new Taux is created with identifier {{ param }}",
+      "updated": "A Taux is updated with identifier {{ param }}",
+      "deleted": "A Taux is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Taux {{ id }}?"
+      },
+      "detail": {
+        "title": "Taux"
+      },
+      "id": "ID",
+      "codeVariableDeclarative": "Code Variable Declarative",
+      "uniteVariableDeclarative": "Unite Variable Declarative",
+      "valeurFacteurMontant": "Valeur Facteur Montant",
+      "valeurFacteurTaux": "Valeur Facteur Taux",
+      "garantie": "Garantie"
+    }
+  }
+}

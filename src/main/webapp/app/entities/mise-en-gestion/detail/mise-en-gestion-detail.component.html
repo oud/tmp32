@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (miseEnGestion(); as miseEnGestionRef) {
+      <div>
+        <h2 data-cy="miseEnGestionDetailsHeading"><span jhiTranslate="tmp32App.miseEnGestion.detail.title">Mise En Gestion</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ miseEnGestionRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.miseEnGestion.codeTypeMiseEnGestion">Code Type Mise En Gestion</span></dt>
+          <dd>
+            <span>{{ miseEnGestionRef.codeTypeMiseEnGestion }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.miseEnGestion.codeOffre">Code Offre</span></dt>
+          <dd>
+            <span>{{ miseEnGestionRef.codeOffre }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.miseEnGestion.dateEffet">Date Effet</span></dt>
+          <dd>
+            <span>{{ miseEnGestionRef.dateEffet | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.miseEnGestion.demandeXRM">Demande XRM</span></dt>
+          <dd>
+            @for (demandeXRM of miseEnGestionRef.demandeXRMS; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/demande-xrm', demandeXRM.id, 'view']">{{ demandeXRM?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="tmp32App.miseEnGestion.pmEtablissement">Pm Etablissement</span></dt>
+          <dd>
+            @for (pmEtablissement of miseEnGestionRef.pmEtablissements; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/pm-etablissement', pmEtablissement.id, 'view']">{{ pmEtablissement?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/mise-en-gestion', miseEnGestionRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

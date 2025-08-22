@@ -1,0 +1,31 @@
+{
+  "annotations": {
+    "changelogDate": "20250822124116"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "adresseEmail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeStatut",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateStatut",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "codeUsageEmail",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Email",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

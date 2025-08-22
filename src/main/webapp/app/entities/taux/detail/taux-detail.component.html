@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (taux(); as tauxRef) {
+      <div>
+        <h2 data-cy="tauxDetailsHeading"><span jhiTranslate="tmp32App.taux.detail.title">Taux</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ tauxRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.taux.codeVariableDeclarative">Code Variable Declarative</span></dt>
+          <dd>
+            <span>{{ tauxRef.codeVariableDeclarative }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.taux.uniteVariableDeclarative">Unite Variable Declarative</span></dt>
+          <dd>
+            <span>{{ tauxRef.uniteVariableDeclarative }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.taux.valeurFacteurMontant">Valeur Facteur Montant</span></dt>
+          <dd>
+            <span>{{ tauxRef.valeurFacteurMontant }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.taux.valeurFacteurTaux">Valeur Facteur Taux</span></dt>
+          <dd>
+            <span>{{ tauxRef.valeurFacteurTaux }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.taux.garantie">Garantie</span></dt>
+          <dd>
+            @if (taux()!.garantie) {
+              <div>
+                <a [routerLink]="['/garantie', taux()!.garantie?.id, 'view']">{{ tauxRef.garantie?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/taux', tauxRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

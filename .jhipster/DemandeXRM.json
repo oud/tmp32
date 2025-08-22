@@ -1,0 +1,36 @@
+{
+  "annotations": {
+    "changelogDate": "20250822124104"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "entityTableName": "demande_xrm",
+  "fields": [
+    {
+      "fieldName": "dateDemande",
+      "fieldType": "LocalTime"
+    },
+    {
+      "fieldName": "dateEnvoiAI",
+      "fieldType": "LocalTime"
+    },
+    {
+      "fieldName": "dateEnvoiIVS",
+      "fieldType": "LocalTime"
+    },
+    {
+      "fieldName": "aI",
+      "fieldType": "Status",
+      "fieldValues": "RECU,TRAITE"
+    },
+    {
+      "fieldName": "iVS",
+      "fieldType": "Status",
+      "fieldValues": "RECU,TRAITE"
+    }
+  ],
+  "name": "DemandeXRM",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

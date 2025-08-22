@@ -1,0 +1,137 @@
+<div>
+  <h2 id="page-heading" data-cy="GroupeHeading">
+    <span jhiTranslate="tmp32App.groupe.home.title">Groupes</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="tmp32App.groupe.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-groupe"
+        [routerLink]="['/groupe/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tmp32App.groupe.home.createLabel">Create a new Groupe</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (groupes().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="tmp32App.groupe.home.notFound">No Groupes found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeGroupeAssures">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.groupe.codeGroupeAssures">Code Groupe Assures</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeGroupePopulation">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.groupe.codeGroupePopulation">Code Groupe Population</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeGroupeAssures">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.groupe.typeGroupeAssures">Type Groupe Assures</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDebutPeriodeGroupeAssures">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.groupe.dateDebutPeriodeGroupeAssures">Date Debut Periode Groupe Assures</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="libelleGroupeAssuresTypeAutre">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.groupe.libelleGroupeAssuresTypeAutre">Libelle Groupe Assures Type Autre</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeEtatGroupeAssures">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.groupe.codeEtatGroupeAssures">Code Etat Groupe Assures</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contrat.id">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.groupe.contrat">Contrat</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (groupe of groupes(); track trackId(groupe)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/groupe', groupe.id, 'view']">{{ groupe.id }}</a>
+              </td>
+              <td>{{ groupe.codeGroupeAssures }}</td>
+              <td>{{ groupe.codeGroupePopulation }}</td>
+              <td>{{ groupe.typeGroupeAssures }}</td>
+              <td>{{ groupe.dateDebutPeriodeGroupeAssures | formatMediumDate }}</td>
+              <td>{{ groupe.libelleGroupeAssuresTypeAutre }}</td>
+              <td>{{ groupe.codeEtatGroupeAssures }}</td>
+              <td>
+                @if (groupe.contrat) {
+                  <div>
+                    <a [routerLink]="['/contrat', groupe.contrat.id, 'view']">{{ groupe.contrat.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/groupe', groupe.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/groupe', groupe.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(groupe)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

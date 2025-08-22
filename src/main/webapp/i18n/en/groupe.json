@@ -1,0 +1,32 @@
+{
+  "tmp32App": {
+    "groupe": {
+      "home": {
+        "title": "Groupes",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Groupe",
+        "createOrEditLabel": "Create or edit a Groupe",
+        "notFound": "No Groupes found"
+      },
+      "created": "A new Groupe is created with identifier {{ param }}",
+      "updated": "A Groupe is updated with identifier {{ param }}",
+      "deleted": "A Groupe is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Groupe {{ id }}?"
+      },
+      "detail": {
+        "title": "Groupe"
+      },
+      "id": "ID",
+      "codeGroupeAssures": "Code Groupe Assures",
+      "codeGroupePopulation": "Code Groupe Population",
+      "typeGroupeAssures": "Type Groupe Assures",
+      "dateDebutPeriodeGroupeAssures": "Date Debut Periode Groupe Assures",
+      "libelleGroupeAssuresTypeAutre": "Libelle Groupe Assures Type Autre",
+      "codeEtatGroupeAssures": "Code Etat Groupe Assures",
+      "pmEtablissement": "Pm Etablissement",
+      "produit": "Produit",
+      "contrat": "Contrat"
+    }
+  }
+}

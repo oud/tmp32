@@ -1,0 +1,558 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-contrat-heading" data-cy="ContratCreateUpdateHeading" jhiTranslate="tmp32App.contrat.home.createOrEditLabel">
+        Create or edit a Contrat
+      </h2>
+
+      <div>
+        <jhi-alert-error />
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="tmp32App.contrat.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let numeroContratCollectifRef = editForm.get('numeroContratCollectif')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_numeroContratCollectif" jhiTranslate="tmp32App.contrat.numeroContratCollectif"
+            >Numero Contrat Collectif</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="numeroContratCollectif"
+            id="field_numeroContratCollectif"
+            data-cy="numeroContratCollectif"
+            formControlName="numeroContratCollectif"
+          />
+          @if (numeroContratCollectifRef.invalid && (numeroContratCollectifRef.dirty || numeroContratCollectifRef.touched)) {
+            <div>
+              @if (editForm.get('numeroContratCollectif')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let migreRef = editForm.get('migre')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_migre" jhiTranslate="tmp32App.contrat.migre">Migre</label>
+          <input type="text" class="form-control" name="migre" id="field_migre" data-cy="migre" formControlName="migre" />
+          @if (migreRef.invalid && (migreRef.dirty || migreRef.touched)) {
+            <div>
+              @if (editForm.get('migre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeEntiteRattachementRef = editForm.get('codeEntiteRattachement')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeEntiteRattachement" jhiTranslate="tmp32App.contrat.codeEntiteRattachement"
+            >Code Entite Rattachement</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeEntiteRattachement"
+            id="field_codeEntiteRattachement"
+            data-cy="codeEntiteRattachement"
+            formControlName="codeEntiteRattachement"
+          />
+          @if (codeEntiteRattachementRef.invalid && (codeEntiteRattachementRef.dirty || codeEntiteRattachementRef.touched)) {
+            <div>
+              @if (editForm.get('codeEntiteRattachement')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeCentreGestionRef = editForm.get('codeCentreGestion')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeCentreGestion" jhiTranslate="tmp32App.contrat.codeCentreGestion"
+            >Code Centre Gestion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeCentreGestion"
+            id="field_codeCentreGestion"
+            data-cy="codeCentreGestion"
+            formControlName="codeCentreGestion"
+          />
+          @if (codeCentreGestionRef.invalid && (codeCentreGestionRef.dirty || codeCentreGestionRef.touched)) {
+            <div>
+              @if (editForm.get('codeCentreGestion')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeGroupeGestionRef = editForm.get('codeGroupeGestion')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeGroupeGestion" jhiTranslate="tmp32App.contrat.codeGroupeGestion"
+            >Code Groupe Gestion</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeGroupeGestion"
+            id="field_codeGroupeGestion"
+            data-cy="codeGroupeGestion"
+            formControlName="codeGroupeGestion"
+          />
+          @if (codeGroupeGestionRef.invalid && (codeGroupeGestionRef.dirty || codeGroupeGestionRef.touched)) {
+            <div>
+              @if (editForm.get('codeGroupeGestion')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeReseauDistributionRef = editForm.get('codeReseauDistribution')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeReseauDistribution" jhiTranslate="tmp32App.contrat.codeReseauDistribution"
+            >Code Reseau Distribution</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeReseauDistribution"
+            id="field_codeReseauDistribution"
+            data-cy="codeReseauDistribution"
+            formControlName="codeReseauDistribution"
+          />
+          @if (codeReseauDistributionRef.invalid && (codeReseauDistributionRef.dirty || codeReseauDistributionRef.touched)) {
+            <div>
+              @if (editForm.get('codeReseauDistribution')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let typeContratCollectifRef = editForm.get('typeContratCollectif')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_typeContratCollectif" jhiTranslate="tmp32App.contrat.typeContratCollectif"
+            >Type Contrat Collectif</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="typeContratCollectif"
+            id="field_typeContratCollectif"
+            data-cy="typeContratCollectif"
+            formControlName="typeContratCollectif"
+          />
+          @if (typeContratCollectifRef.invalid && (typeContratCollectifRef.dirty || typeContratCollectifRef.touched)) {
+            <div>
+              @if (editForm.get('typeContratCollectif')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let etatContratRef = editForm.get('etatContrat')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_etatContrat" jhiTranslate="tmp32App.contrat.etatContrat">Etat Contrat</label>
+          <input
+            type="text"
+            class="form-control"
+            name="etatContrat"
+            id="field_etatContrat"
+            data-cy="etatContrat"
+            formControlName="etatContrat"
+          />
+          @if (etatContratRef.invalid && (etatContratRef.dirty || etatContratRef.touched)) {
+            <div>
+              @if (editForm.get('etatContrat')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let dateEffetPremiereSouscriptionRef = editForm.get('dateEffetPremiereSouscription')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_dateEffetPremiereSouscription" jhiTranslate="tmp32App.contrat.dateEffetPremiereSouscription"
+            >Date Effet Premiere Souscription</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateEffetPremiereSouscription"
+              data-cy="dateEffetPremiereSouscription"
+              type="text"
+              class="form-control"
+              name="dateEffetPremiereSouscription"
+              ngbDatepicker
+              #dateEffetPremiereSouscriptionDp="ngbDatepicker"
+              formControlName="dateEffetPremiereSouscription"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateEffetPremiereSouscriptionDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+          @if (
+            dateEffetPremiereSouscriptionRef.invalid && (dateEffetPremiereSouscriptionRef.dirty || dateEffetPremiereSouscriptionRef.touched)
+          ) {
+            <div>
+              @if (editForm.get('dateEffetPremiereSouscription')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_dateEffetDerniereResiliation" jhiTranslate="tmp32App.contrat.dateEffetDerniereResiliation"
+            >Date Effet Derniere Resiliation</label
+          >
+          <div class="input-group">
+            <input
+              id="field_dateEffetDerniereResiliation"
+              data-cy="dateEffetDerniereResiliation"
+              type="text"
+              class="form-control"
+              name="dateEffetDerniereResiliation"
+              ngbDatepicker
+              #dateEffetDerniereResiliationDp="ngbDatepicker"
+              formControlName="dateEffetDerniereResiliation"
+            />
+            <button type="button" class="btn btn-secondary" (click)="dateEffetDerniereResiliationDp.toggle()">
+              <fa-icon icon="calendar-alt"></fa-icon>
+            </button>
+          </div>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_motifResiliation" jhiTranslate="tmp32App.contrat.motifResiliation">Motif Resiliation</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motifResiliation"
+            id="field_motifResiliation"
+            data-cy="motifResiliation"
+            formControlName="motifResiliation"
+          />
+        </div>
+
+        @let codeNatureCouvertureRef = editForm.get('codeNatureCouverture')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeNatureCouverture" jhiTranslate="tmp32App.contrat.codeNatureCouverture"
+            >Code Nature Couverture</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeNatureCouverture"
+            id="field_codeNatureCouverture"
+            data-cy="codeNatureCouverture"
+            formControlName="codeNatureCouverture"
+          />
+          @if (codeNatureCouvertureRef.invalid && (codeNatureCouvertureRef.dirty || codeNatureCouvertureRef.touched)) {
+            <div>
+              @if (editForm.get('codeNatureCouverture')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeOffreRef = editForm.get('codeOffre')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeOffre" jhiTranslate="tmp32App.contrat.codeOffre">Code Offre</label>
+          <input type="text" class="form-control" name="codeOffre" id="field_codeOffre" data-cy="codeOffre" formControlName="codeOffre" />
+          @if (codeOffreRef.invalid && (codeOffreRef.dirty || codeOffreRef.touched)) {
+            <div>
+              @if (editForm.get('codeOffre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let numeroVersionOffreRef = editForm.get('numeroVersionOffre')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_numeroVersionOffre" jhiTranslate="tmp32App.contrat.numeroVersionOffre"
+            >Numero Version Offre</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="numeroVersionOffre"
+            id="field_numeroVersionOffre"
+            data-cy="numeroVersionOffre"
+            formControlName="numeroVersionOffre"
+          />
+          @if (numeroVersionOffreRef.invalid && (numeroVersionOffreRef.dirty || numeroVersionOffreRef.touched)) {
+            <div>
+              @if (editForm.get('numeroVersionOffre')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let echeancePrincipaleRef = editForm.get('echeancePrincipale')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_echeancePrincipale" jhiTranslate="tmp32App.contrat.echeancePrincipale"
+            >Echeance Principale</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="echeancePrincipale"
+            id="field_echeancePrincipale"
+            data-cy="echeancePrincipale"
+            formControlName="echeancePrincipale"
+          />
+          @if (echeancePrincipaleRef.invalid && (echeancePrincipaleRef.dirty || echeancePrincipaleRef.touched)) {
+            <div>
+              @if (editForm.get('echeancePrincipale')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeOrganismePorteurRisqueRef = editForm.get('codeOrganismePorteurRisque')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_codeOrganismePorteurRisque" jhiTranslate="tmp32App.contrat.codeOrganismePorteurRisque"
+            >Code Organisme Porteur Risque</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeOrganismePorteurRisque"
+            id="field_codeOrganismePorteurRisque"
+            data-cy="codeOrganismePorteurRisque"
+            formControlName="codeOrganismePorteurRisque"
+          />
+          @if (codeOrganismePorteurRisqueRef.invalid && (codeOrganismePorteurRisqueRef.dirty || codeOrganismePorteurRisqueRef.touched)) {
+            <div>
+              @if (editForm.get('codeOrganismePorteurRisque')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let indicateurPorteurRisqueRef = editForm.get('indicateurPorteurRisque')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_indicateurPorteurRisque" jhiTranslate="tmp32App.contrat.indicateurPorteurRisque"
+            >Indicateur Porteur Risque</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="indicateurPorteurRisque"
+            id="field_indicateurPorteurRisque"
+            data-cy="indicateurPorteurRisque"
+            formControlName="indicateurPorteurRisque"
+          />
+          @if (indicateurPorteurRisqueRef.invalid && (indicateurPorteurRisqueRef.dirty || indicateurPorteurRisqueRef.touched)) {
+            <div>
+              @if (editForm.get('indicateurPorteurRisque')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeOrganismeProducteurFicheDsnRef = editForm.get('codeOrganismeProducteurFicheDsn')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_codeOrganismeProducteurFicheDsn"
+            jhiTranslate="tmp32App.contrat.codeOrganismeProducteurFicheDsn"
+            >Code Organisme Producteur Fiche Dsn</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeOrganismeProducteurFicheDsn"
+            id="field_codeOrganismeProducteurFicheDsn"
+            data-cy="codeOrganismeProducteurFicheDsn"
+            formControlName="codeOrganismeProducteurFicheDsn"
+          />
+          @if (
+            codeOrganismeProducteurFicheDsnRef.invalid &&
+            (codeOrganismeProducteurFicheDsnRef.dirty || codeOrganismeProducteurFicheDsnRef.touched)
+          ) {
+            <div>
+              @if (editForm.get('codeOrganismeProducteurFicheDsn')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeOrganismeDelegataireCotisationsRef = editForm.get('codeOrganismeDelegataireCotisations')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_codeOrganismeDelegataireCotisations"
+            jhiTranslate="tmp32App.contrat.codeOrganismeDelegataireCotisations"
+            >Code Organisme Delegataire Cotisations</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeOrganismeDelegataireCotisations"
+            id="field_codeOrganismeDelegataireCotisations"
+            data-cy="codeOrganismeDelegataireCotisations"
+            formControlName="codeOrganismeDelegataireCotisations"
+          />
+          @if (
+            codeOrganismeDelegataireCotisationsRef.invalid &&
+            (codeOrganismeDelegataireCotisationsRef.dirty || codeOrganismeDelegataireCotisationsRef.touched)
+          ) {
+            <div>
+              @if (editForm.get('codeOrganismeDelegataireCotisations')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let codeOrganismeDelegatairePrestationsRef = editForm.get('codeOrganismeDelegatairePrestations')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_codeOrganismeDelegatairePrestations"
+            jhiTranslate="tmp32App.contrat.codeOrganismeDelegatairePrestations"
+            >Code Organisme Delegataire Prestations</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="codeOrganismeDelegatairePrestations"
+            id="field_codeOrganismeDelegatairePrestations"
+            data-cy="codeOrganismeDelegatairePrestations"
+            formControlName="codeOrganismeDelegatairePrestations"
+          />
+          @if (
+            codeOrganismeDelegatairePrestationsRef.invalid &&
+            (codeOrganismeDelegatairePrestationsRef.dirty || codeOrganismeDelegatairePrestationsRef.touched)
+          ) {
+            <div>
+              @if (editForm.get('codeOrganismeDelegatairePrestations')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let datePremierMoisCotisationAutoriseRef = editForm.get('datePremierMoisCotisationAutorise')!;
+        <div class="mb-3">
+          <label
+            class="form-label"
+            for="field_datePremierMoisCotisationAutorise"
+            jhiTranslate="tmp32App.contrat.datePremierMoisCotisationAutorise"
+            >Date Premier Mois Cotisation Autorise</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="datePremierMoisCotisationAutorise"
+            id="field_datePremierMoisCotisationAutorise"
+            data-cy="datePremierMoisCotisationAutorise"
+            formControlName="datePremierMoisCotisationAutorise"
+          />
+          @if (
+            datePremierMoisCotisationAutoriseRef.invalid &&
+            (datePremierMoisCotisationAutoriseRef.dirty || datePremierMoisCotisationAutoriseRef.touched)
+          ) {
+            <div>
+              @if (editForm.get('datePremierMoisCotisationAutorise')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let numeroOperationNiveau0Ref = editForm.get('numeroOperationNiveau0')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_numeroOperationNiveau0" jhiTranslate="tmp32App.contrat.numeroOperationNiveau0"
+            >Numero Operation Niveau 0</label
+          >
+          <input
+            type="number"
+            class="form-control"
+            name="numeroOperationNiveau0"
+            id="field_numeroOperationNiveau0"
+            data-cy="numeroOperationNiveau0"
+            formControlName="numeroOperationNiveau0"
+          />
+          @if (numeroOperationNiveau0Ref.invalid && (numeroOperationNiveau0Ref.dirty || numeroOperationNiveau0Ref.touched)) {
+            <div>
+              @if (editForm.get('numeroOperationNiveau0')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('numeroOperationNiveau0')?.errors?.number"
+                jhiTranslate="entity.validation.number"
+                >This field should be a number.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let statutRef = editForm.get('statut')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_statut" jhiTranslate="tmp32App.contrat.statut">Statut</label>
+          <input type="text" class="form-control" name="statut" id="field_statut" data-cy="statut" formControlName="statut" />
+          @if (statutRef.invalid && (statutRef.dirty || statutRef.touched)) {
+            <div>
+              @if (editForm.get('statut')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">This field is required.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pmEntreprise" jhiTranslate="tmp32App.contrat.pmEntreprise">Pm Entreprise</label>
+          <select
+            class="form-control"
+            id="field_pmEntreprise"
+            data-cy="pmEntreprise"
+            name="pmEntreprise"
+            formControlName="pmEntreprise"
+            [compareWith]="comparePmEntreprise"
+          >
+            <option [ngValue]="null"></option>
+            @for (pmEntrepriseOption of pmEntreprisesCollection; track $index) {
+              <option [ngValue]="pmEntrepriseOption">{{ pmEntrepriseOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

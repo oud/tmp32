@@ -1,0 +1,145 @@
+<div>
+  <h2 id="page-heading" data-cy="OperationHeading">
+    <span jhiTranslate="tmp32App.operation.home.title">Operations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="tmp32App.operation.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-operation"
+        [routerLink]="['/operation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tmp32App.operation.home.createLabel">Create a new Operation</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (operations().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="tmp32App.operation.home.notFound">No Operations found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroOperationNiveau0">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.operation.numeroOperationNiveau0">Numero Operation Niveau 0</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="etatOperation">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.operation.etatOperation">Etat Operation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateEffetOperation">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.operation.dateEffetOperation">Date Effet Operation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateDemandeOperation">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.operation.dateDemandeOperation">Date Demande Operation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateCreation">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.operation.dateCreation">Date Creation</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeActeGestion">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.operation.codeActeGestion">Code Acte Gestion</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroOperationAnnulee">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.operation.numeroOperationAnnulee">Numero Operation Annulee</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="contrat.id">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.operation.contrat">Contrat</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (operation of operations(); track trackId(operation)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/operation', operation.id, 'view']">{{ operation.id }}</a>
+              </td>
+              <td>{{ operation.numeroOperationNiveau0 }}</td>
+              <td>{{ operation.etatOperation }}</td>
+              <td>{{ operation.dateEffetOperation | formatMediumDate }}</td>
+              <td>{{ operation.dateDemandeOperation | formatMediumDate }}</td>
+              <td>{{ operation.dateCreation | formatMediumDate }}</td>
+              <td>{{ operation.codeActeGestion }}</td>
+              <td>{{ operation.numeroOperationAnnulee }}</td>
+              <td>
+                @if (operation.contrat) {
+                  <div>
+                    <a [routerLink]="['/contrat', operation.contrat.id, 'view']">{{ operation.contrat.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/operation', operation.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/operation', operation.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(operation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>
