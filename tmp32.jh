@@ -210,9 +210,10 @@ relationship OneToMany {
     PmEtablissement{email} to Email
     PmEtablissement{telephone} to Telephone
 }
-
-relationship ManyToMany {
-   MiseEnGestion{demandeXRM} to DemandeXRM,
+relationship OneToMany {
+   DemandeXRM{miseEnGestion} to MiseEnGestion
+}
+relationship ManyToOne {
    MiseEnGestion{pmEtablissement} to PmEtablissement
 }
 
