@@ -125,10 +125,6 @@ public class PmEtablissement implements Serializable {
     @JsonIgnoreProperties(value = { "pmEtablissement" }, allowSetters = true)
     private Set<Telephone> telephones = new HashSet<>();
 
-    @ManyToMany(fetch = FetchType.LAZY, mappedBy = "pmEtablissements")
-    @JsonIgnoreProperties(value = { "demandeXRMS", "pmEtablissements" }, allowSetters = true)
-    private Set<MiseEnGestion> miseEnGestions = new HashSet<>();
-
     @ManyToOne(fetch = FetchType.LAZY)
     @JsonIgnoreProperties(value = { "pmEtablissements", "produits", "contrat" }, allowSetters = true)
     private Groupe groupe;
@@ -567,37 +563,6 @@ public class PmEtablissement implements Serializable {
     public PmEtablissement removeTelephone(Telephone telephone) {
         this.telephones.remove(telephone);
         telephone.setPmEtablissement(null);
-        return this;
-    }
-
-    public Set<MiseEnGestion> getMiseEnGestions() {
-        return this.miseEnGestions;
-    }
-
-    public void setMiseEnGestions(Set<MiseEnGestion> miseEnGestions) {
-        if (this.miseEnGestions != null) {
-            this.miseEnGestions.forEach(i -> i.removePmEtablissement(this));
-        }
-        if (miseEnGestions != null) {
-            miseEnGestions.forEach(i -> i.addPmEtablissement(this));
-        }
-        this.miseEnGestions = miseEnGestions;
-    }
-
-    public PmEtablissement miseEnGestions(Set<MiseEnGestion> miseEnGestions) {
-        this.setMiseEnGestions(miseEnGestions);
-        return this;
-    }
-
-    public PmEtablissement addMiseEnGestion(MiseEnGestion miseEnGestion) {
-        this.miseEnGestions.add(miseEnGestion);
-        miseEnGestion.getPmEtablissements().add(this);
-        return this;
-    }
-
-    public PmEtablissement removeMiseEnGestion(MiseEnGestion miseEnGestion) {
-        this.miseEnGestions.remove(miseEnGestion);
-        miseEnGestion.getPmEtablissements().remove(this);
         return this;
     }
 

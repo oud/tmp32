@@ -109,7 +109,7 @@ public class PmEntreprise implements Serializable {
     private Boolean checked;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "pmEntreprise")
-    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "miseEnGestions", "groupe", "pmEntreprise" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "groupe", "pmEntreprise" }, allowSetters = true)
     private Set<PmEtablissement> pmEtablissements = new HashSet<>();
 
     @JsonIgnoreProperties(value = { "pmEntreprise", "groupes", "operations" }, allowSetters = true)

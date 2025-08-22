@@ -115,15 +115,6 @@
           <dd>
             <span>{{ pmEtablissementRef.checked }}</span>
           </dd>
-          <dt><span jhiTranslate="tmp32App.pmEtablissement.miseEnGestion">Mise En Gestion</span></dt>
-          <dd>
-            @for (miseEnGestion of pmEtablissementRef.miseEnGestions; track $index; let last = $last) {
-              <span>
-                <a [routerLink]="['/mise-en-gestion', miseEnGestion.id, 'view']">{{ miseEnGestion?.id }}</a
-                >{{ last ? '' : ', ' }}
-              </span>
-            }
-          </dd>
           <dt><span jhiTranslate="tmp32App.pmEtablissement.groupe">Groupe</span></dt>
           <dd>
             @if (pmEtablissement()!.groupe) {

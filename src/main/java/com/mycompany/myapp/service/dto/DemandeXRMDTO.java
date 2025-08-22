@@ -3,9 +3,7 @@ package com.mycompany.myapp.service.dto;
 import com.mycompany.myapp.domain.enumeration.Status;
 import java.io.Serializable;
 import java.time.LocalTime;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * A DTO for the {@link com.mycompany.myapp.domain.DemandeXRM} entity.
@@ -24,8 +22,6 @@ public class DemandeXRMDTO implements Serializable {
     private Status aI;
 
     private Status iVS;
-
-    private Set<MiseEnGestionDTO> miseEnGestions = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -75,14 +71,6 @@ public class DemandeXRMDTO implements Serializable {
         this.iVS = iVS;
     }
 
-    public Set<MiseEnGestionDTO> getMiseEnGestions() {
-        return miseEnGestions;
-    }
-
-    public void setMiseEnGestions(Set<MiseEnGestionDTO> miseEnGestions) {
-        this.miseEnGestions = miseEnGestions;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -114,7 +102,6 @@ public class DemandeXRMDTO implements Serializable {
             ", dateEnvoiIVS='" + getDateEnvoiIVS() + "'" +
             ", aI='" + getaI() + "'" +
             ", iVS='" + getiVS() + "'" +
-            ", miseEnGestions=" + getMiseEnGestions() +
             "}";
     }
 }

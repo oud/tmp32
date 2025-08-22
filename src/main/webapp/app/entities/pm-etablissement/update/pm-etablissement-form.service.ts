@@ -14,7 +14,7 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type PmEtablissementFormGroupInput = IPmEtablissement | PartialWithRequiredKeyOf<NewPmEtablissement>;
 
-type PmEtablissementFormDefaults = Pick<NewPmEtablissement, 'id' | 'checked' | 'miseEnGestions'>;
+type PmEtablissementFormDefaults = Pick<NewPmEtablissement, 'id' | 'checked'>;
 
 type PmEtablissementFormGroupContent = {
   id: FormControl<IPmEtablissement['id'] | NewPmEtablissement['id']>;
@@ -43,7 +43,6 @@ type PmEtablissementFormGroupContent = {
   codeNIC: FormControl<IPmEtablissement['codeNIC']>;
   identifiantAI: FormControl<IPmEtablissement['identifiantAI']>;
   checked: FormControl<IPmEtablissement['checked']>;
-  miseEnGestions: FormControl<IPmEtablissement['miseEnGestions']>;
   groupe: FormControl<IPmEtablissement['groupe']>;
   pmEntreprise: FormControl<IPmEtablissement['pmEntreprise']>;
 };
@@ -118,7 +117,6 @@ export class PmEtablissementFormService {
       }),
       identifiantAI: new FormControl(pmEtablissementRawValue.identifiantAI),
       checked: new FormControl(pmEtablissementRawValue.checked),
-      miseEnGestions: new FormControl(pmEtablissementRawValue.miseEnGestions ?? []),
       groupe: new FormControl(pmEtablissementRawValue.groupe),
       pmEntreprise: new FormControl(pmEtablissementRawValue.pmEntreprise),
     });
@@ -142,7 +140,6 @@ export class PmEtablissementFormService {
     return {
       id: null,
       checked: false,
-      miseEnGestions: [],
     };
   }
 }

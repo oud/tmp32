@@ -63,7 +63,7 @@ public class MiseEnGestionAsserts {
     public static void assertMiseEnGestionUpdatableRelationshipsEquals(MiseEnGestion expected, MiseEnGestion actual) {
         assertThat(actual)
             .as("Verify MiseEnGestion relationships")
-            .satisfies(a -> assertThat(a.getDemandeXRMS()).as("check demandeXRMS").isEqualTo(expected.getDemandeXRMS()))
-            .satisfies(a -> assertThat(a.getPmEtablissements()).as("check pmEtablissements").isEqualTo(expected.getPmEtablissements()));
+            .satisfies(a -> assertThat(a.getPmEtablissement()).as("check pmEtablissement").isEqualTo(expected.getPmEtablissement()))
+            .satisfies(a -> assertThat(a.getDemandeXRM()).as("check demandeXRM").isEqualTo(expected.getDemandeXRM()));
     }
 }

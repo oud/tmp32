@@ -4,7 +4,6 @@ import static com.mycompany.myapp.domain.MiseEnGestionAsserts.*;
 import static com.mycompany.myapp.web.rest.TestUtil.createUpdateProxyForBean;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
-import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -12,25 +11,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mycompany.myapp.IntegrationTest;
 import com.mycompany.myapp.domain.MiseEnGestion;
 import com.mycompany.myapp.repository.MiseEnGestionRepository;
-import com.mycompany.myapp.service.MiseEnGestionService;
 import com.mycompany.myapp.service.dto.MiseEnGestionDTO;
 import com.mycompany.myapp.service.mapper.MiseEnGestionMapper;
 import jakarta.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.concurrent.atomic.AtomicLong;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Mock;
-import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
@@ -40,7 +32,6 @@ import org.springframework.transaction.annotation.Transactional;
  * Integration tests for the {@link MiseEnGestionResource} REST controller.
  */
 @IntegrationTest
-@ExtendWith(MockitoExtension.class)
 @AutoConfigureMockMvc
 @WithMockUser
 class MiseEnGestionResourceIT {
@@ -66,14 +57,8 @@ class MiseEnGestionResourceIT {
     @Autowired
     private MiseEnGestionRepository miseEnGestionRepository;
 
-    @Mock
-    private MiseEnGestionRepository miseEnGestionRepositoryMock;
-
     @Autowired
     private MiseEnGestionMapper miseEnGestionMapper;
-
-    @Mock
-    private MiseEnGestionService miseEnGestionServiceMock;
 
     @Autowired
     private EntityManager em;
@@ -232,23 +217,6 @@ class MiseEnGestionResourceIT {
             .andExpect(jsonPath("$.[*].codeTypeMiseEnGestion").value(hasItem(DEFAULT_CODE_TYPE_MISE_EN_GESTION)))
             .andExpect(jsonPath("$.[*].codeOffre").value(hasItem(DEFAULT_CODE_OFFRE)))
             .andExpect(jsonPath("$.[*].dateEffet").value(hasItem(DEFAULT_DATE_EFFET.toString())));
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllMiseEnGestionsWithEagerRelationshipsIsEnabled() throws Exception {
-        when(miseEnGestionServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restMiseEnGestionMockMvc.perform(get(ENTITY_API_URL + "?eagerload=true")).andExpect(status().isOk());
-
-        verify(miseEnGestionServiceMock, times(1)).findAllWithEagerRelationships(any());
-    }
-
-    @SuppressWarnings({ "unchecked" })
-    void getAllMiseEnGestionsWithEagerRelationshipsIsNotEnabled() throws Exception {
-        when(miseEnGestionServiceMock.findAllWithEagerRelationships(any())).thenReturn(new PageImpl(new ArrayList<>()));
-
-        restMiseEnGestionMockMvc.perform(get(ENTITY_API_URL + "?eagerload=false")).andExpect(status().isOk());
-        verify(miseEnGestionRepositoryMock, times(1)).findAll(any(Pageable.class));
     }
 
     @Test

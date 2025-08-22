@@ -3,7 +3,6 @@ package com.mycompany.myapp.domain;
 import static com.mycompany.myapp.domain.AdresseTestSamples.*;
 import static com.mycompany.myapp.domain.EmailTestSamples.*;
 import static com.mycompany.myapp.domain.GroupeTestSamples.*;
-import static com.mycompany.myapp.domain.MiseEnGestionTestSamples.*;
 import static com.mycompany.myapp.domain.PmEntrepriseTestSamples.*;
 import static com.mycompany.myapp.domain.PmEtablissementTestSamples.*;
 import static com.mycompany.myapp.domain.TelephoneTestSamples.*;
@@ -94,28 +93,6 @@ class PmEtablissementTest {
         pmEtablissement.setTelephones(new HashSet<>());
         assertThat(pmEtablissement.getTelephones()).doesNotContain(telephoneBack);
         assertThat(telephoneBack.getPmEtablissement()).isNull();
-    }
-
-    @Test
-    void miseEnGestionTest() {
-        PmEtablissement pmEtablissement = getPmEtablissementRandomSampleGenerator();
-        MiseEnGestion miseEnGestionBack = getMiseEnGestionRandomSampleGenerator();
-
-        pmEtablissement.addMiseEnGestion(miseEnGestionBack);
-        assertThat(pmEtablissement.getMiseEnGestions()).containsOnly(miseEnGestionBack);
-        assertThat(miseEnGestionBack.getPmEtablissements()).containsOnly(pmEtablissement);
-
-        pmEtablissement.removeMiseEnGestion(miseEnGestionBack);
-        assertThat(pmEtablissement.getMiseEnGestions()).doesNotContain(miseEnGestionBack);
-        assertThat(miseEnGestionBack.getPmEtablissements()).doesNotContain(pmEtablissement);
-
-        pmEtablissement.miseEnGestions(new HashSet<>(Set.of(miseEnGestionBack)));
-        assertThat(pmEtablissement.getMiseEnGestions()).containsOnly(miseEnGestionBack);
-        assertThat(miseEnGestionBack.getPmEtablissements()).containsOnly(pmEtablissement);
-
-        pmEtablissement.setMiseEnGestions(new HashSet<>());
-        assertThat(pmEtablissement.getMiseEnGestions()).doesNotContain(miseEnGestionBack);
-        assertThat(miseEnGestionBack.getPmEtablissements()).doesNotContain(pmEtablissement);
     }
 
     @Test

@@ -134,13 +134,10 @@ public class MiseEnGestionResource {
     /**
      * {@code GET  /mise-en-gestions} : get all the miseEnGestions.
      *
-     * @param eagerload flag to eager load entities from relationships (This is applicable for many-to-many).
      * @return the {@link ResponseEntity} with status {@code 200 (OK)} and the list of miseEnGestions in body.
      */
     @GetMapping("")
-    public List<MiseEnGestionDTO> getAllMiseEnGestions(
-        @RequestParam(name = "eagerload", required = false, defaultValue = "true") boolean eagerload
-    ) {
+    public List<MiseEnGestionDTO> getAllMiseEnGestions() {
         LOG.debug("REST request to get all MiseEnGestions");
         return miseEnGestionService.findAll();
     }

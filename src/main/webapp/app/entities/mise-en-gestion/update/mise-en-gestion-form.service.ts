@@ -14,15 +14,15 @@ type PartialWithRequiredKeyOf<T extends { id: unknown }> = Partial<Omit<T, 'id'>
  */
 type MiseEnGestionFormGroupInput = IMiseEnGestion | PartialWithRequiredKeyOf<NewMiseEnGestion>;
 
-type MiseEnGestionFormDefaults = Pick<NewMiseEnGestion, 'id' | 'demandeXRMS' | 'pmEtablissements'>;
+type MiseEnGestionFormDefaults = Pick<NewMiseEnGestion, 'id'>;
 
 type MiseEnGestionFormGroupContent = {
   id: FormControl<IMiseEnGestion['id'] | NewMiseEnGestion['id']>;
   codeTypeMiseEnGestion: FormControl<IMiseEnGestion['codeTypeMiseEnGestion']>;
   codeOffre: FormControl<IMiseEnGestion['codeOffre']>;
   dateEffet: FormControl<IMiseEnGestion['dateEffet']>;
-  demandeXRMS: FormControl<IMiseEnGestion['demandeXRMS']>;
-  pmEtablissements: FormControl<IMiseEnGestion['pmEtablissements']>;
+  pmEtablissement: FormControl<IMiseEnGestion['pmEtablissement']>;
+  demandeXRM: FormControl<IMiseEnGestion['demandeXRM']>;
 };
 
 export type MiseEnGestionFormGroup = FormGroup<MiseEnGestionFormGroupContent>;
@@ -51,8 +51,8 @@ export class MiseEnGestionFormService {
       dateEffet: new FormControl(miseEnGestionRawValue.dateEffet, {
         validators: [Validators.required],
       }),
-      demandeXRMS: new FormControl(miseEnGestionRawValue.demandeXRMS ?? []),
-      pmEtablissements: new FormControl(miseEnGestionRawValue.pmEtablissements ?? []),
+      pmEtablissement: new FormControl(miseEnGestionRawValue.pmEtablissement),
+      demandeXRM: new FormControl(miseEnGestionRawValue.demandeXRM),
     });
   }
 
@@ -73,8 +73,6 @@ export class MiseEnGestionFormService {
   private getFormDefaults(): MiseEnGestionFormDefaults {
     return {
       id: null,
-      demandeXRMS: [],
-      pmEtablissements: [],
     };
   }
 }

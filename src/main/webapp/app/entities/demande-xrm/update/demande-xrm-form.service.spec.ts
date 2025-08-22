@@ -25,7 +25,6 @@ describe('DemandeXRM Form Service', () => {
             dateEnvoiIVS: expect.any(Object),
             aI: expect.any(Object),
             iVS: expect.any(Object),
-            miseEnGestions: expect.any(Object),
           }),
         );
       });
@@ -41,7 +40,6 @@ describe('DemandeXRM Form Service', () => {
             dateEnvoiIVS: expect.any(Object),
             aI: expect.any(Object),
             iVS: expect.any(Object),
-            miseEnGestions: expect.any(Object),
           }),
         );
       });

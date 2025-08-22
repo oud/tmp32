@@ -27,22 +27,22 @@
           <dd>
             <span>{{ miseEnGestionRef.dateEffet | formatMediumDate }}</span>
           </dd>
-          <dt><span jhiTranslate="tmp32App.miseEnGestion.demandeXRM">Demande XRM</span></dt>
-          <dd>
-            @for (demandeXRM of miseEnGestionRef.demandeXRMS; track $index; let last = $last) {
-              <span>
-                <a [routerLink]="['/demande-xrm', demandeXRM.id, 'view']">{{ demandeXRM?.id }}</a
-                >{{ last ? '' : ', ' }}
-              </span>
-            }
-          </dd>
           <dt><span jhiTranslate="tmp32App.miseEnGestion.pmEtablissement">Pm Etablissement</span></dt>
           <dd>
-            @for (pmEtablissement of miseEnGestionRef.pmEtablissements; track $index; let last = $last) {
-              <span>
-                <a [routerLink]="['/pm-etablissement', pmEtablissement.id, 'view']">{{ pmEtablissement?.id }}</a
-                >{{ last ? '' : ', ' }}
-              </span>
+            @if (miseEnGestion()!.pmEtablissement) {
+              <div>
+                <a [routerLink]="['/pm-etablissement', miseEnGestion()!.pmEtablissement?.id, 'view']">{{
+                  miseEnGestionRef.pmEtablissement?.id
+                }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="tmp32App.miseEnGestion.demandeXRM">Demande XRM</span></dt>
+          <dd>
+            @if (miseEnGestion()!.demandeXRM) {
+              <div>
+                <a [routerLink]="['/demande-xrm', miseEnGestion()!.demandeXRM?.id, 'view']">{{ miseEnGestionRef.demandeXRM?.id }}</a>
+              </div>
             }
           </dd>
         </dl>

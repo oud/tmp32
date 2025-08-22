@@ -3,9 +3,7 @@ package com.mycompany.myapp.service.dto;
 import jakarta.validation.constraints.*;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 /**
  * A DTO for the {@link com.mycompany.myapp.domain.PmEtablissement} entity.
@@ -78,8 +76,6 @@ public class PmEtablissementDTO implements Serializable {
     private String identifiantAI;
 
     private Boolean checked;
-
-    private Set<MiseEnGestionDTO> miseEnGestions = new HashSet<>();
 
     private GroupeDTO groupe;
 
@@ -293,14 +289,6 @@ public class PmEtablissementDTO implements Serializable {
         this.checked = checked;
     }
 
-    public Set<MiseEnGestionDTO> getMiseEnGestions() {
-        return miseEnGestions;
-    }
-
-    public void setMiseEnGestions(Set<MiseEnGestionDTO> miseEnGestions) {
-        this.miseEnGestions = miseEnGestions;
-    }
-
     public GroupeDTO getGroupe() {
         return groupe;
     }
@@ -368,7 +356,6 @@ public class PmEtablissementDTO implements Serializable {
             ", codeNIC='" + getCodeNIC() + "'" +
             ", identifiantAI='" + getIdentifiantAI() + "'" +
             ", checked='" + getChecked() + "'" +
-            ", miseEnGestions=" + getMiseEnGestions() +
             ", groupe=" + getGroupe() +
             ", pmEntreprise=" + getPmEntreprise() +
             "}";

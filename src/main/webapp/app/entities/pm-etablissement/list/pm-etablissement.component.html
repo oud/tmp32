@@ -215,12 +215,6 @@
                 <fa-icon class="p-1" icon="sort"></fa-icon>
               </div>
             </th>
-            <th scope="col" jhiSortBy="miseEnGestion.id">
-              <div class="d-flex">
-                <span jhiTranslate="tmp32App.pmEtablissement.miseEnGestion">Mise En Gestion</span>
-                <fa-icon class="p-1" icon="sort"></fa-icon>
-              </div>
-            </th>
             <th scope="col" jhiSortBy="groupe.id">
               <div class="d-flex">
                 <span jhiTranslate="tmp32App.pmEtablissement.groupe">Groupe</span>
@@ -267,14 +261,6 @@
               <td>{{ pmEtablissement.codeNIC }}</td>
               <td>{{ pmEtablissement.identifiantAI }}</td>
               <td>{{ pmEtablissement.checked }}</td>
-              <td>
-                @for (miseEnGestion of pmEtablissement.miseEnGestions; track $index; let last = $last) {
-                  <span>
-                    <a class="form-control-static" [routerLink]="['/mise-en-gestion', miseEnGestion.id, 'view']">{{ miseEnGestion.id }}</a
-                    >{{ last ? '' : ', ' }}
-                  </span>
-                }
-              </td>
               <td>
                 @if (pmEtablissement.groupe) {
                   <div>

@@ -4,8 +4,6 @@ import { FormBuilder } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { Subject, from, of } from 'rxjs';
 
-import { IMiseEnGestion } from 'app/entities/mise-en-gestion/mise-en-gestion.model';
-import { MiseEnGestionService } from 'app/entities/mise-en-gestion/service/mise-en-gestion.service';
 import { DemandeXRMService } from '../service/demande-xrm.service';
 import { IDemandeXRM } from '../demande-xrm.model';
 import { DemandeXRMFormService } from './demande-xrm-form.service';
@@ -18,7 +16,6 @@ describe('DemandeXRM Management Update Component', () => {
   let activatedRoute: ActivatedRoute;
   let demandeXRMFormService: DemandeXRMFormService;
   let demandeXRMService: DemandeXRMService;
-  let miseEnGestionService: MiseEnGestionService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
@@ -41,43 +38,17 @@ describe('DemandeXRM Management Update Component', () => {
     activatedRoute = TestBed.inject(ActivatedRoute);
     demandeXRMFormService = TestBed.inject(DemandeXRMFormService);
     demandeXRMService = TestBed.inject(DemandeXRMService);
-    miseEnGestionService = TestBed.inject(MiseEnGestionService);
 
     comp = fixture.componentInstance;
   });
 
   describe('ngOnInit', () => {
-    it('should call MiseEnGestion query and add missing value', () => {
-      const demandeXRM: IDemandeXRM = { id: 11627 };
-      const miseEnGestions: IMiseEnGestion[] = [{ id: 9935 }];
-      demandeXRM.miseEnGestions = miseEnGestions;
-
-      const miseEnGestionCollection: IMiseEnGestion[] = [{ id: 9935 }];
-      jest.spyOn(miseEnGestionService, 'query').mockReturnValue(of(new HttpResponse({ body: miseEnGestionCollection })));
-      const additionalMiseEnGestions = [...miseEnGestions];
-      const expectedCollection: IMiseEnGestion[] = [...additionalMiseEnGestions, ...miseEnGestionCollection];
-      jest.spyOn(miseEnGestionService, 'addMiseEnGestionToCollectionIfMissing').mockReturnValue(expectedCollection);
-
-      activatedRoute.data = of({ demandeXRM });
-      comp.ngOnInit();
-
-      expect(miseEnGestionService.query).toHaveBeenCalled();
-      expect(miseEnGestionService.addMiseEnGestionToCollectionIfMissing).toHaveBeenCalledWith(
-        miseEnGestionCollection,
-        ...additionalMiseEnGestions.map(expect.objectContaining),
-      );
-      expect(comp.miseEnGestionsSharedCollection).toEqual(expectedCollection);
-    });
-
     it('should update editForm', () => {
       const demandeXRM: IDemandeXRM = { id: 11627 };
-      const miseEnGestion: IMiseEnGestion = { id: 9935 };
-      demandeXRM.miseEnGestions = [miseEnGestion];
 
       activatedRoute.data = of({ demandeXRM });
       comp.ngOnInit();
 
-      expect(comp.miseEnGestionsSharedCollection).toContainEqual(miseEnGestion);
       expect(comp.demandeXRM).toEqual(demandeXRM);
     });
   });
@@ -147,18 +118,6 @@ describe('DemandeXRM Management Update Component', () => {
       expect(demandeXRMService.update).toHaveBeenCalled();
       expect(comp.isSaving).toEqual(false);
       expect(comp.previousState).not.toHaveBeenCalled();
-    });
-  });
-
-  describe('Compare relationships', () => {
-    describe('compareMiseEnGestion', () => {
-      it('should forward to miseEnGestionService', () => {
-        const entity = { id: 9935 };
-        const entity2 = { id: 12141 };
-        jest.spyOn(miseEnGestionService, 'compareMiseEnGestion');
-        comp.compareMiseEnGestion(entity, entity2);
-        expect(miseEnGestionService.compareMiseEnGestion).toHaveBeenCalledWith(entity, entity2);
-      });
     });
   });
 });

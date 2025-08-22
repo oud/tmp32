@@ -452,23 +452,6 @@
         </div>
 
         <div class="mb-3">
-          <label for="field_miseEnGestions" jhiTranslate="tmp32App.pmEtablissement.miseEnGestion">Mise En Gestion</label>
-          <select
-            class="form-control"
-            id="field_miseEnGestions"
-            data-cy="miseEnGestion"
-            multiple
-            name="miseEnGestions"
-            formControlName="miseEnGestions"
-            [compareWith]="compareMiseEnGestion"
-          >
-            @for (miseEnGestionOption of miseEnGestionsSharedCollection; track $index) {
-              <option [ngValue]="miseEnGestionOption">{{ miseEnGestionOption.id }}</option>
-            }
-          </select>
-        </div>
-
-        <div class="mb-3">
           <label class="form-label" for="field_groupe" jhiTranslate="tmp32App.pmEtablissement.groupe">Groupe</label>
           <select
             class="form-control"
