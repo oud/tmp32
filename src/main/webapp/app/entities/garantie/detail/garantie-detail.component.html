@@ -1,0 +1,90 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (garantie(); as garantieRef) {
+      <div>
+        <h2 data-cy="garantieDetailsHeading"><span jhiTranslate="tmp32App.garantie.detail.title">Garantie</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ garantieRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.codeGarantieTechnique">Code Garantie Technique</span></dt>
+          <dd>
+            <span>{{ garantieRef.codeGarantieTechnique }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.codeEtatGarantie">Code Etat Garantie</span></dt>
+          <dd>
+            <span>{{ garantieRef.codeEtatGarantie }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.dateAdhesionGarantie">Date Adhesion Garantie</span></dt>
+          <dd>
+            <span>{{ garantieRef.dateAdhesionGarantie | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.dateRadiationGarantie">Date Radiation Garantie</span></dt>
+          <dd>
+            <span>{{ garantieRef.dateRadiationGarantie | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.codeAssureur">Code Assureur</span></dt>
+          <dd>
+            <span>{{ garantieRef.codeAssureur }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.codeFormule">Code Formule</span></dt>
+          <dd>
+            <span>{{ garantieRef.codeFormule }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.codePack">Code Pack</span></dt>
+          <dd>
+            <span>{{ garantieRef.codePack }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.typePack">Type Pack</span></dt>
+          <dd>
+            <span>{{ garantieRef.typePack }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.titrePack">Titre Pack</span></dt>
+          <dd>
+            <span>{{ garantieRef.titrePack }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.codeSousPack">Code Sous Pack</span></dt>
+          <dd>
+            <span>{{ garantieRef.codeSousPack }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.typeSousPack">Type Sous Pack</span></dt>
+          <dd>
+            <span>{{ garantieRef.typeSousPack }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.titreSousPack">Titre Sous Pack</span></dt>
+          <dd>
+            <span>{{ garantieRef.titreSousPack }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.codeTypePrestations">Code Type Prestations</span></dt>
+          <dd>
+            <span>{{ garantieRef.codeTypePrestations }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.garantie.produit">Produit</span></dt>
+          <dd>
+            @if (garantie()!.produit) {
+              <div>
+                <a [routerLink]="['/produit', garantie()!.produit?.id, 'view']">{{ garantieRef.produit?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/garantie', garantieRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

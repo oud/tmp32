@@ -1,0 +1,41 @@
+{
+  "annotations": {
+    "changelogDate": "20250822124105"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "codeTypeMiseEnGestion",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeOffre",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateEffet",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "MiseEnGestion",
+  "relationships": [
+    {
+      "otherEntityName": "demandeXRM",
+      "relationshipName": "demandeXRM",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "pmEtablissement",
+      "relationshipName": "pmEtablissement",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

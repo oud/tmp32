@@ -1,0 +1,70 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (produit(); as produitRef) {
+      <div>
+        <h2 data-cy="produitDetailsHeading"><span jhiTranslate="tmp32App.produit.detail.title">Produit</span></h2>
+
+        <hr />
+
+        <jhi-alert-error />
+
+        <jhi-alert />
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ produitRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.codeProduit">Code Produit</span></dt>
+          <dd>
+            <span>{{ produitRef.codeProduit }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.dateAdhesionProduit">Date Adhesion Produit</span></dt>
+          <dd>
+            <span>{{ produitRef.dateAdhesionProduit | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.dateRadiationProduit">Date Radiation Produit</span></dt>
+          <dd>
+            <span>{{ produitRef.dateRadiationProduit | formatMediumDate }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.codeFormule">Code Formule</span></dt>
+          <dd>
+            <span>{{ produitRef.codeFormule }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.codeFamilleRisqueFormule">Code Famille Risque Formule</span></dt>
+          <dd>
+            <span>{{ produitRef.codeFamilleRisqueFormule }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.titreFormule">Titre Formule</span></dt>
+          <dd>
+            <span>{{ produitRef.titreFormule }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.typeFormule">Type Formule</span></dt>
+          <dd>
+            <span>{{ produitRef.typeFormule }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.codeEtat">Code Etat</span></dt>
+          <dd>
+            <span>{{ produitRef.codeEtat }}</span>
+          </dd>
+          <dt><span jhiTranslate="tmp32App.produit.groupe">Groupe</span></dt>
+          <dd>
+            @if (produit()!.groupe) {
+              <div>
+                <a [routerLink]="['/groupe', produit()!.groupe?.id, 'view']">{{ produitRef.groupe?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+        </button>
+
+        <button type="button" [routerLink]="['/produit', produitRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

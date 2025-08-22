@@ -1,0 +1,38 @@
+{
+  "tmp32App": {
+    "garantie": {
+      "home": {
+        "title": "Garanties",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Garantie",
+        "createOrEditLabel": "Create or edit a Garantie",
+        "notFound": "No Garanties found"
+      },
+      "created": "A new Garantie is created with identifier {{ param }}",
+      "updated": "A Garantie is updated with identifier {{ param }}",
+      "deleted": "A Garantie is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Garantie {{ id }}?"
+      },
+      "detail": {
+        "title": "Garantie"
+      },
+      "id": "ID",
+      "codeGarantieTechnique": "Code Garantie Technique",
+      "codeEtatGarantie": "Code Etat Garantie",
+      "dateAdhesionGarantie": "Date Adhesion Garantie",
+      "dateRadiationGarantie": "Date Radiation Garantie",
+      "codeAssureur": "Code Assureur",
+      "codeFormule": "Code Formule",
+      "codePack": "Code Pack",
+      "typePack": "Type Pack",
+      "titrePack": "Titre Pack",
+      "codeSousPack": "Code Sous Pack",
+      "typeSousPack": "Type Sous Pack",
+      "titreSousPack": "Titre Sous Pack",
+      "codeTypePrestations": "Code Type Prestations",
+      "taux": "Taux",
+      "produit": "Produit"
+    }
+  }
+}

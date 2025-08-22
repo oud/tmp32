@@ -41,6 +41,33 @@ public class CacheConfiguration {
             createCache(cm, com.mycompany.myapp.repository.UserRepository.USERS_BY_LOGIN_CACHE);
             createCache(cm, com.mycompany.myapp.repository.UserRepository.USERS_BY_EMAIL_CACHE);
             createCache(cm, com.mycompany.myapp.domain.Authority.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.DemandeXRM.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.DemandeXRM.class.getName() + ".miseEnGestions");
+            createCache(cm, com.mycompany.myapp.domain.MiseEnGestion.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.MiseEnGestion.class.getName() + ".demandeXRMS");
+            createCache(cm, com.mycompany.myapp.domain.MiseEnGestion.class.getName() + ".pmEtablissements");
+            createCache(cm, com.mycompany.myapp.domain.Contrat.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Contrat.class.getName() + ".groupes");
+            createCache(cm, com.mycompany.myapp.domain.Contrat.class.getName() + ".operations");
+            createCache(cm, com.mycompany.myapp.domain.Groupe.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Groupe.class.getName() + ".pmEtablissements");
+            createCache(cm, com.mycompany.myapp.domain.Groupe.class.getName() + ".produits");
+            createCache(cm, com.mycompany.myapp.domain.Produit.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Produit.class.getName() + ".garanties");
+            createCache(cm, com.mycompany.myapp.domain.Garantie.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Garantie.class.getName() + ".tauxes");
+            createCache(cm, com.mycompany.myapp.domain.Taux.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Operation.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.PmEntreprise.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.PmEntreprise.class.getName() + ".pmEtablissements");
+            createCache(cm, com.mycompany.myapp.domain.PmEtablissement.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.PmEtablissement.class.getName() + ".adresses");
+            createCache(cm, com.mycompany.myapp.domain.PmEtablissement.class.getName() + ".emails");
+            createCache(cm, com.mycompany.myapp.domain.PmEtablissement.class.getName() + ".telephones");
+            createCache(cm, com.mycompany.myapp.domain.PmEtablissement.class.getName() + ".miseEnGestions");
+            createCache(cm, com.mycompany.myapp.domain.Adresse.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Telephone.class.getName());
+            createCache(cm, com.mycompany.myapp.domain.Email.class.getName());
             // jhipster-needle-ehcache-add-entry
         };
     }

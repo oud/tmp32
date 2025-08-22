@@ -1,0 +1,146 @@
+{
+  "annotations": {
+    "changelogDate": "20250822124113"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "idEtablissementRPG",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codePartenaireDistributeur",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroSiretSiege",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeEtat",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelleEtat",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeCategoriePersonne",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelleCategoriePersonne",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeType",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateCreationJuridique",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateEtat",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateFermetureJuridique",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "codeAPE",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeIDCC",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeTrancheEffectif",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "libelleTrancheEffectif",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateCessationActivite",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "dateEffectifOfficiel",
+      "fieldType": "LocalDate"
+    },
+    {
+      "fieldName": "effectifOfficiel",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeMotifCessationActivite",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "siret",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeTypeEtablissement",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelleEnseigne",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "codeNIC",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "identifiantAI",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "checked",
+      "fieldType": "Boolean"
+    }
+  ],
+  "name": "PmEtablissement",
+  "relationships": [
+    {
+      "otherEntityName": "adresse",
+      "relationshipName": "adresse",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "email",
+      "relationshipName": "email",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "telephone",
+      "relationshipName": "telephone",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}

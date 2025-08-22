@@ -1,0 +1,193 @@
+<div>
+  <h2 id="page-heading" data-cy="GarantieHeading">
+    <span jhiTranslate="tmp32App.garantie.home.title">Garanties</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="tmp32App.garantie.home.refreshListLabel">Refresh list</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-garantie"
+        [routerLink]="['/garantie/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="tmp32App.garantie.home.createLabel">Create a new Garantie</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error />
+
+  <jhi-alert />
+
+  @if (garanties().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="tmp32App.garantie.home.notFound">No Garanties found</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeGarantieTechnique">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.codeGarantieTechnique">Code Garantie Technique</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeEtatGarantie">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.codeEtatGarantie">Code Etat Garantie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateAdhesionGarantie">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.dateAdhesionGarantie">Date Adhesion Garantie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="dateRadiationGarantie">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.dateRadiationGarantie">Date Radiation Garantie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeAssureur">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.codeAssureur">Code Assureur</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeFormule">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.codeFormule">Code Formule</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codePack">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.codePack">Code Pack</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typePack">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.typePack">Type Pack</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="titrePack">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.titrePack">Titre Pack</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeSousPack">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.codeSousPack">Code Sous Pack</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="typeSousPack">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.typeSousPack">Type Sous Pack</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="titreSousPack">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.titreSousPack">Titre Sous Pack</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="codeTypePrestations">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.codeTypePrestations">Code Type Prestations</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="produit.id">
+              <div class="d-flex">
+                <span jhiTranslate="tmp32App.garantie.produit">Produit</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (garantie of garanties(); track trackId(garantie)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/garantie', garantie.id, 'view']">{{ garantie.id }}</a>
+              </td>
+              <td>{{ garantie.codeGarantieTechnique }}</td>
+              <td>{{ garantie.codeEtatGarantie }}</td>
+              <td>{{ garantie.dateAdhesionGarantie | formatMediumDate }}</td>
+              <td>{{ garantie.dateRadiationGarantie | formatMediumDate }}</td>
+              <td>{{ garantie.codeAssureur }}</td>
+              <td>{{ garantie.codeFormule }}</td>
+              <td>{{ garantie.codePack }}</td>
+              <td>{{ garantie.typePack }}</td>
+              <td>{{ garantie.titrePack }}</td>
+              <td>{{ garantie.codeSousPack }}</td>
+              <td>{{ garantie.typeSousPack }}</td>
+              <td>{{ garantie.titreSousPack }}</td>
+              <td>{{ garantie.codeTypePrestations }}</td>
+              <td>
+                @if (garantie.produit) {
+                  <div>
+                    <a [routerLink]="['/produit', garantie.produit.id, 'view']">{{ garantie.produit.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/garantie', garantie.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                  </a>
+
+                  <a [routerLink]="['/garantie', garantie.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(garantie)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

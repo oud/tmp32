@@ -1,0 +1,32 @@
+{
+  "annotations": {
+    "changelogDate": "20250822124110"
+  },
+  "applications": "*",
+  "dto": "mapstruct",
+  "fields": [
+    {
+      "fieldName": "codeVariableDeclarative",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "uniteVariableDeclarative",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "valeurFacteurMontant",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "valeurFacteurTaux",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Taux",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceImpl"
+}
