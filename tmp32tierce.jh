@@ -1,0 +1,229 @@
+entity DemandeXRM {
+	dateDemande LocalTime
+    dateEnvoiAI LocalTime
+    dateEnvoiIVS LocalTime
+	AI Status
+    IVS Status    
+}
+
+enum Status{
+	RECU
+    TRAITE
+}
+
+entity MiseEnGestion {
+	codeTypeMiseEnGestion String required
+    codeOffre String required
+    dateEffet LocalDate required
+}
+
+entity Contrat {
+	numeroContratCollectif String required
+    migre String required
+    codeEntiteRattachement String required
+    codeCentreGestion String required
+    codeGroupeGestion String required
+    codeReseauDistribution String required
+    typeContratCollectif String required
+    etatContrat String required
+    dateEffetPremiereSouscription LocalDate required
+    dateEffetDerniereResiliation LocalDate 
+    motifResiliation String 
+    codeNatureCouverture String required
+    codeOffre String required
+    numeroVersionOffre String required
+    echeancePrincipale String required
+    codeOrganismePorteurRisque String required
+    indicateurPorteurRisque String required
+    codeOrganismeProducteurFicheDsn String required
+    codeOrganismeDelegataireCotisations String required
+    codeOrganismeDelegatairePrestations String required
+    datePremierMoisCotisationAutorise String required
+    numeroOperationNiveau0 Integer required
+    statut String required
+}
+
+entity Groupe {
+	codeGroupeAssures String required
+    codeGroupePopulation String required
+    typeGroupeAssures String required
+    dateDebutPeriodeGroupeAssures LocalDate required
+    dateDebutPeriodeGroupeAssures LocalDate required
+    libelleGroupeAssuresTypeAutre String required
+    codeEtatGroupeAssures String required
+}
+
+entity Produit {
+	codeProduit String required
+    dateAdhesionProduit LocalDate required
+    dateRadiationProduit LocalDate
+    codeFormule String required
+    codeFamilleRisqueFormule String required
+    titreFormule String required
+    typeFormule String required
+    codeEtat String required    
+}
+
+entity Garantie {
+	codeGarantieTechnique String required
+    codeEtatGarantie String required
+    dateAdhesionGarantie LocalDate required
+    dateRadiationGarantie LocalDate required
+    codeAssureur String required
+    codeFormule String required
+    codePack String required
+    typePack String required
+    titrePack String required
+    codeSousPack String required
+    typeSousPack String required
+    titreSousPack String required
+    codeTypePrestations String required    
+}
+
+entity Taux {
+	codeVariableDeclarative String required
+    uniteVariableDeclarative String required
+    valeurFacteurMontant String
+    valeurFacteurTaux String required
+}
+
+entity Operation {
+	numeroOperationNiveau0 String required
+    etatOperation String required
+    dateEffetOperation LocalDate required
+    dateDemandeOperation LocalDate
+    dateCreation LocalDate required
+    codeActeGestion String required
+    numeroOperationAnnulee String
+}
+
+entity PmEntreprise {
+	idEntrepriseRPG String required
+    codePartenaireDistributeur String required
+    numeroSiretSiege String required
+    codeEtat String required
+    libelleEtat String 
+	codeCategoriePersonne String 
+	libelleCategoriePersonne String 
+  	codeType String 
+    dateCreationJuridique LocalDate required
+    dateEtat LocalDate 
+    dateFermetureJuridique LocalDate 
+    codeTrancheEffectif String 
+    libelleTrancheEffectif String 
+    dateCessationActivite LocalDate 
+    dateEffectifOfficiel LocalDate 
+    effectifOfficiel String 
+    codeMotifCessationActivite String 
+    siren String required
+    codeFormeJuridique String required
+    raisonSociale String required
+    codeCategorieJuridique String 
+    codeIDCC String 
+    codeAPE String required
+    identifiantAI String
+    checked Boolean
+  }
+  
+entity PmEtablissement {
+    idEtablissementRPG String required
+    codePartenaireDistributeur String required
+    numeroSiretSiege String required
+    codeEtat String required
+    libelleEtat String 
+    codeCategoriePersonne String required
+    libelleCategoriePersonne String required
+    codeType String required
+    dateCreationJuridique LocalDate required
+    dateEtat LocalDate required
+    dateFermetureJuridique LocalDate
+    codeAPE String required
+    codeIDCC String 
+    codeTrancheEffectif String 
+    libelleTrancheEffectif String 
+    dateCessationActivite LocalDate 
+    dateEffectifOfficiel LocalDate 
+    effectifOfficiel String 
+    codeMotifCessationActivite String 
+    siret String required
+    codeTypeEtablissement String required
+    libelleEnseigne String required
+    codeNIC String required
+    identifiantAI String
+    checked Boolean
+}
+
+entity Adresse {
+	codePaysISO String required
+    codePostal String required
+	dateDerniereModification LocalDate 
+    codeTypeAdresse String required
+	libelleCommune String 
+    ligne1 String 
+    ligne2 String 
+    ligne3 String 
+    ligne4 String 
+    ligne5 String 
+    ligne6 String 
+    ligne7 String 
+    nombreCourriersPND String 
+    codeUsageAdresse String required
+}
+
+entity Telephone {
+	codeTypeTelephone String required
+	codePaysISO String 
+    dateDerniereModification LocalDate 
+    codeIndicatifPays String 
+    numeroTelephone String required
+    codeStatut String 
+    dateStatut String 
+    codeUsageTelephone String 
+}
+
+entity Email {
+    adresseEmail String required
+    codeStatut String 
+    dateStatut LocalDate 
+    codeUsageEmail String required
+}
+
+relationship OneToOne {
+    Contrat{pmEntreprise} to PmEntreprise
+}
+
+relationship OneToMany {
+	Groupe{pmEtablissement} to PmEtablissement
+    Contrat{groupe} to Groupe
+    Contrat{operation} to Operation
+    Groupe{produit} to Produit
+    Produit{garantie} to Garantie
+    Garantie{taux} to Taux
+}
+
+relationship OneToMany {
+	PmEntreprise{pmEtablissement} to PmEtablissement
+}
+
+relationship OneToMany {
+	PmEtablissement{adresse} to Adresse
+    PmEtablissement{email} to Email
+    PmEtablissement{telephone} to Telephone
+}
+relationship OneToMany {
+   DemandeXRM{miseEnGestion} to MiseEnGestion{demandeXRM}
+}
+relationship ManyToOne {
+   MiseEnGestion{pmEtablissement} to PmEtablissement{miseEnGestion}
+}
+
+
+
+// Use Data Transfer Objects (DTO)
+dto * with mapstruct
+
+// Set service options to all except few
+service * with serviceImpl
+
+// Set an angular suffix
+// angularSuffix * with mySuffix

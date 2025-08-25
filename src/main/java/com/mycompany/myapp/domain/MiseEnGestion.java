@@ -35,7 +35,7 @@ public class MiseEnGestion implements Serializable {
     private LocalDate dateEffet;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "groupe", "pmEntreprise" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "miseEnGestions", "groupe", "pmEntreprise" }, allowSetters = true)
     private PmEtablissement pmEtablissement;
 
     @ManyToOne(fetch = FetchType.LAZY)

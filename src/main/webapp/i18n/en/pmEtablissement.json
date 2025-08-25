@@ -46,6 +46,7 @@
       "adresse": "Adresse",
       "email": "Email",
       "telephone": "Telephone",
+      "miseEnGestion": "Mise En Gestion",
       "groupe": "Groupe",
       "pmEntreprise": "Pm Entreprise"
     }
