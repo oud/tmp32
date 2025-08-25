@@ -25,8 +25,16 @@
   "relationships": [
     {
       "otherEntityName": "pmEtablissement",
+      "otherEntityRelationshipName": "miseEnGestion",
       "relationshipName": "pmEtablissement",
       "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "demandeXRM",
+      "otherEntityRelationshipName": "miseEnGestion",
+      "relationshipName": "demandeXRM",
+      "relationshipSide": "right",
       "relationshipType": "many-to-one"
     }
   ],

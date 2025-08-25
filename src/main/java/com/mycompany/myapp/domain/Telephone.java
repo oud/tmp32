@@ -49,7 +49,7 @@ public class Telephone implements Serializable {
     private String codeUsageTelephone;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "groupe", "pmEntreprise" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "miseEnGestions", "groupe", "pmEntreprise" }, allowSetters = true)
     private PmEtablissement pmEtablissement;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here

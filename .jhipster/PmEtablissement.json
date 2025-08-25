@@ -139,6 +139,13 @@
       "relationshipName": "telephone",
       "relationshipSide": "left",
       "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "miseEnGestion",
+      "otherEntityRelationshipName": "pmEtablissement",
+      "relationshipName": "miseEnGestion",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
     }
   ],
   "searchEngine": "no",

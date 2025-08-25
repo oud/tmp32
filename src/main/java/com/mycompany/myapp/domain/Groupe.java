@@ -49,7 +49,7 @@ public class Groupe implements Serializable {
     private String codeEtatGroupeAssures;
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupe")
-    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "groupe", "pmEntreprise" }, allowSetters = true)
+    @JsonIgnoreProperties(value = { "adresses", "emails", "telephones", "miseEnGestions", "groupe", "pmEntreprise" }, allowSetters = true)
     private Set<PmEtablissement> pmEtablissements = new HashSet<>();
 
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "groupe")
